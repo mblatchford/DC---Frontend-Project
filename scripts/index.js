@@ -15,12 +15,26 @@ function getImages(queryStr){
     //stringified data needs to be converted to json for use
     .then(str => str.json())
     // temp helper to check for valid api calls
-    .then(mbHelper)
+    .then(packageImg)
+    //.then(next function call -> @ian)
 }
 
-// loop my json array and extract 8 small images
-function mbHelper (jsonData){
+// loop json array, extract 8 small images, append attribution data
+function packageImg(jsonData){
+    let imgArray = [];
     for(let i = 0; i < 8; i++ ){
-    console.log(jsonData.results[i].urls.small);
+        // keep reintializing a new imgObj in the loop
+        // else if outside, just accesing memory pointers to one object
+        let imgObj = {
+            src: "",
+            attr_name: "",
+            attr_url: ""
+        };
+       imgObj.src = `${jsonData.results[i].urls.small}`;
+       imgObj.attr_name = `${jsonData.results[i].user.name}`;
+       imgObj.attr_url = `${jsonData.results[i].links.html}`;
+       imgArray.push(imgObj);
     }
+    // console.table(imgArray);
+    return imgArray;
 }
