@@ -13,13 +13,9 @@ function getImages(queryStr){
       }
     })
     //stringified data needs to be converted to json for use
-    .then(convertToJSON)
+    .then(str => str.json())
     // temp helper to check for valid api calls
     .then(mbHelper)
-}
-
-function convertToJSON(apiString){
-    return apiString.json();
 }
 
 // loop my json array and extract 8 small images
