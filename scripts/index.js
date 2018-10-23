@@ -21,11 +21,9 @@ function getImages(queryStr){
 
 // loop json array, extract 8 small images, append attribution data
 function packageImg(jsonData){
-    console.table(jsonData.results);
     //a given query will return the same images from the api
     //randomizing the images taken will allow for a better user experience accross
     //games with the same img query 
-    console.log(jsonData.results.length);
     function getRandomIntInclusive(min=0, max=jsonData.results.length-1) {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -48,6 +46,7 @@ function packageImg(jsonData){
        imgObj.attr_url = `${jsonData.results[randomized].links.html}`;
        imgArray.push(imgObj);
     }
-    console.table(imgArray);
+    //uncomment the below to get a handle on what is being passed back to the promise chain
+    // console.table(imgArray);
     return imgArray;
 }
