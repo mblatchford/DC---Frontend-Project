@@ -1,13 +1,34 @@
 /* apply a natural box layout model to all elements, but allowing components to change */
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
-*, *:before, *:after {
-    box-sizing: inherit;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+html,
+body {
+  margin: 20px 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.boardy {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 960px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.memcard {
+  margin: 5px;
+  background-color: #fad566;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 150px;
+  width: 150px;
 }
