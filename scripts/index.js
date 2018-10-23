@@ -4,7 +4,7 @@ function getImages(queryStr){
     // debugger;
      // fetch photos from api dynamically based on query 
     // abstracted accessKey into seperate file
-    const URI = `https://api.unsplash.com/search/photos/?query=${queryStr}&orientation=squarish&page=1&per_page=100&client_id=${accessKey}`;
+    const URI = `https://api.unsplash.com/search/photos/?query=${queryStr}&orientation=squarish&page=1&per_page=100&client_id=${accessKeyUnsplash}`;
     fetch(URI, {
     headers: {
         'Content-Type': 'application/json',
