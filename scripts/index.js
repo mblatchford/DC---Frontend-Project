@@ -6,6 +6,7 @@
 
 // const emptyArrayOfImages = [];
 
+// array of objects that hold the name / src of temp images
 const arrayOfImages = [
   {
     name: "1",
@@ -41,12 +42,14 @@ const arrayOfImages = [
   }
 ];
 
+// container for images is appended and array of images is concatenated to double up the images.
 let gameBoard = arrayOfImages.concat(arrayOfImages);
 const board = document.querySelector("[data-board]");
 const imageContainer = document.createElement("div");
 imageContainer.setAttribute("class", "boardy");
 board.appendChild(imageContainer);
 
+// loops through array of images to append to div
 gameBoard.forEach(item => {
   const imageCard = document.createElement("div");
   imageCard.classList.add("memcard");
