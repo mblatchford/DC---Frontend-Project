@@ -48,8 +48,14 @@ let gameBoard = arrayOfImages.concat(arrayOfImages);
 // sorts the cards randomly
 gameBoard.sort(() => 0.5 - Math.random());
 
+let firstClick = "";
+let secondClick = "";
+let count = 0;
+
+let lastClick = null;
+
 const board = document.querySelector("[data-board]");
-const imageContainer = document.createElement("div");
+const imageContainer = document.createElement("section");
 imageContainer.setAttribute("class", "boardy");
 board.appendChild(imageContainer);
 
@@ -62,15 +68,46 @@ gameBoard.forEach(item => {
   imageContainer.appendChild(imageCard);
 });
 
+const paired = () => {
+  var chosen = document.querySelectorAll(".clicked");
+  chosen.forEach(imageCard => {
+    imageCard.classList.add("paired");
+  });
+};
+
 // an event listener for the game board
 imageContainer.addEventListener("click", function(e) {
   // console.log('i clicked');
   let selected = e.target;
-
-  if (selected.nodeName === "div") {
+  //   only allow the div cards to be selected and
+  //   not allow the same item to be selected
+  if (selected.nodeName === "section" || selected === lastClick) {
     return;
   }
-  selected.classList.add("clicked");
+
+  if (count < 2) {
+    count++;
+    if (count === 1) {
+      // the first click is assigned
+      firstClick = selected.dataset.name;
+      console.log(firstClick);
+      selected.classList.add("clicked");
+    } else {
+      // the second click is assigned
+      secondClick = selected.dataset.name;
+      console.log(secondClick);
+      selected.classList.add("clicked");
+    }
+    // as long as the first and second clicks are not empty
+    // and the first click matches the second click
+    // the paired function is called.
+    if (firstClick !== "" && secondClick !== "") {
+      if (firstClick === secondClick) {
+        paired();
+      }
+    }
+    lastClick = selected;
+  }
 });
 
 // function to randomize 8 cards
