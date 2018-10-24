@@ -7,8 +7,7 @@
 // numImages is dynamically passed to function at init as more tiles are created
  let numImages = 8;
 
-function getImages(queryStr, numImages){
-    // debugger;
+function getImages(queryStr, pageSize, numImages){
      // fetch photos from api dynamically based on query 
     // abstracted accessKey into seperate file
     const URI = `https://api.unsplash.com/search/photos/?query=${queryStr}&orientation=squarish&page=1&per_page=${pageSize}&client_id=${accessKeyUnsplash}`;
@@ -25,11 +24,11 @@ function getImages(queryStr, numImages){
     })
     //pass json to image extractor
     .then(packageImg)
-    //.then(next function call -> @ian)
+    .then(gameStart)
 }
 
 // loop json array, extract small images, append attribution data
-function packageImg([jsonData,numImgs]){
+function packageImg([jsonData, numImgs]){
     //a given query will return the same images from the api
     //randomizing the images taken will allow for a better user experience accross
     //games with the same query 

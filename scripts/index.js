@@ -4,42 +4,13 @@
 // unless the cards are correct, in which case the cards stay visible.
 // guess count is reset after 2 guesses.
 
-// array of objects that hold the name / src of temp images
-const arrayOfImages = [
-  {
-    name: "1",
-    image: "imgs/1.png"
-  },
-  {
-    name: "2",
-    image: "imgs/2.png"
-  },
-  {
-    name: "3",
-    image: "imgs/3.png"
-  },
-  {
-    name: "4",
-    image: "imgs/4.png"
-  },
-  {
-    name: "5",
-    image: "imgs/5.png"
-  },
-  {
-    name: "6",
-    image: "imgs/6.png"
-  },
-  {
-    name: "7",
-    image: "imgs/7.png"
-  },
-  {
-    name: "8",
-    image: "imgs/8.png"
-  }
-];
+function button(){
+  getImages(queryStr, pageSize, numImages);
+}
 
+function gameStart(dataObj){
+
+const arrayOfImages = dataObj;
 // container for images is appended and array of images is concatenated to double up the images.
 let gameBoard = arrayOfImages.concat(arrayOfImages);
 
@@ -63,7 +34,10 @@ gameBoard.forEach(item => {
   // card elements are created with name
   const tile = document.createElement("div");
   tile.classList.add("memcard");
-  tile.dataset.name = item.name;
+  tile.dataset.attr_name = item.attr_name;
+  tile.dataset.attr_url = item.attr_url;
+  tile.dataset.name = item.src;
+
 
   //   front card element created
   const frontOf = document.createElement("div");
@@ -72,7 +46,7 @@ gameBoard.forEach(item => {
   // back card element created
   const backOf = document.createElement("div");
   backOf.classList.add("back");
-  backOf.style.backgroundImage = `url(${item.image})`;
+  backOf.style.backgroundImage = `url(${item.src})`;
 
   tileContainer.appendChild(tile);
   tile.appendChild(frontOf);
@@ -107,7 +81,6 @@ tileContainer.addEventListener("click", function(e) {
   //   the same tile again.
   if (
     selected.nodeName === "section" ||
-    selected === lastClick ||
     selected.parentNode.classList.contains("clicked") ||
     selected.parentNode.classList.contains("paired")
   ) {
@@ -138,7 +111,6 @@ tileContainer.addEventListener("click", function(e) {
         setTimeout(resetClicks, wait);
       }
     }
-    // set the previous clicked item as clicked
-    lastClick = selected;
   }
 });
+}
