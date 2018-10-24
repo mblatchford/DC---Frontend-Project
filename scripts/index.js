@@ -75,6 +75,17 @@ const paired = () => {
   });
 };
 
+const resetClicks = () => {
+  firstClick = "";
+  secondClick = "";
+  count = 0;
+
+  let clicked = document.querySelectorAll(".clicked");
+  clicked.forEach(imageCard => {
+    imageCard.classList.remove("clicked");
+  });
+};
+
 // an event listener for the game board
 imageContainer.addEventListener("click", function(e) {
   // console.log('i clicked');
@@ -104,8 +115,12 @@ imageContainer.addEventListener("click", function(e) {
     if (firstClick !== "" && secondClick !== "") {
       if (firstClick === secondClick) {
         paired();
+        resetClicks();
+      } else {
+        resetClicks();
       }
     }
+    // set the previous clicked item as clicked
     lastClick = selected;
   }
 });
