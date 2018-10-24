@@ -1,5 +1,5 @@
 // query will be hardcoded to button intialization
-// let queryStr = "animals";
+let queryStr = "animals";
 // durationEnd allows for searching longer or shorter effects
 // may not be necessary in final build, but can be dynamically created
 // let durationEnd = 3;
