@@ -4,8 +4,6 @@
 // unless the cards are correct, in which case the cards stay visible.
 // guess count is reset after 2 guesses.
 
-// const emptyArrayOfImages = [];
-
 // array of objects that hold the name / src of temp images
 const arrayOfImages = [
   {
@@ -56,16 +54,16 @@ let wait = 800;
 let lastClick = null;
 
 const board = document.querySelector("[data-board]");
-const imageContainer = document.createElement("section");
-imageContainer.setAttribute("class", "boardy");
-board.appendChild(imageContainer);
+const tileContainer = document.createElement("section");
+tileContainer.setAttribute("class", "boardy");
+board.appendChild(tileContainer);
 
 // loops through array of images to append to div
 gameBoard.forEach(item => {
   // card elements are created with name
-  const imageCard = document.createElement("div");
-  imageCard.classList.add("memcard");
-  imageCard.dataset.name = item.name;
+  const tile = document.createElement("div");
+  tile.classList.add("memcard");
+  tile.dataset.name = item.name;
 
   //   front card element created
   const frontOf = document.createElement("div");
@@ -76,16 +74,15 @@ gameBoard.forEach(item => {
   backOf.classList.add("back");
   backOf.style.backgroundImage = `url(${item.image})`;
 
-  //   imageCard.style.backgroundImage = `url(${item.image})`;
-  imageContainer.appendChild(imageCard);
-  imageCard.appendChild(frontOf);
-  imageCard.appendChild(backOf);
+  tileContainer.appendChild(tile);
+  tile.appendChild(frontOf);
+  tile.appendChild(backOf);
 });
 
 const paired = () => {
-  var chosen = document.querySelectorAll(".clicked");
-  chosen.forEach(imageCard => {
-    imageCard.classList.add("paired");
+  let chosen = document.querySelectorAll(".clicked");
+  chosen.forEach(tile => {
+    tile.classList.add("paired");
   });
 };
 
@@ -96,21 +93,23 @@ const resetClicks = () => {
   count = 0;
 
   let clicked = document.querySelectorAll(".clicked");
-  clicked.forEach(imageCard => {
-    imageCard.classList.remove("clicked");
+  clicked.forEach(tile => {
+    tile.classList.remove("clicked");
   });
 };
 
 // an event listener for the game board
-imageContainer.addEventListener("click", function(e) {
+tileContainer.addEventListener("click", function(e) {
   // console.log('i clicked');
   let selected = e.target;
   //   only allow the div cards to be selected and
-  //   not allow the same item to be selected
+  //   if there's a pair selected, the user cannot click
+  //   the same tile again.
   if (
     selected.nodeName === "section" ||
     selected === lastClick ||
-    selected.parentNode.classList.contains("clicked")
+    selected.parentNode.classList.contains("clicked") ||
+    selected.parentNode.classList.contains("paired")
   ) {
     return;
   }
@@ -118,14 +117,12 @@ imageContainer.addEventListener("click", function(e) {
   if (count < 2) {
     count++;
     if (count === 1) {
-      // the first click is assigned
       firstClick = selected.parentNode.dataset.name;
-      console.log(firstClick);
+      //   console.log(firstClick);
       selected.parentNode.classList.add("clicked");
     } else {
-      // the second click is assigned
       secondClick = selected.parentNode.dataset.name;
-      console.log(secondClick);
+      //   console.log(secondClick);
       selected.parentNode.classList.add("clicked");
     }
     // as long as the first and second clicks are not empty
