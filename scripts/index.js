@@ -51,6 +51,7 @@ gameBoard.sort(() => 0.5 - Math.random());
 let firstClick = "";
 let secondClick = "";
 let count = 0;
+let wait = 800;
 
 let lastClick = null;
 
@@ -111,13 +112,14 @@ imageContainer.addEventListener("click", function(e) {
     }
     // as long as the first and second clicks are not empty
     // and the first click matches the second click
-    // the paired function is called.
+    // the paired function is called. also added a delay between 
+    // resetting clicks and matched pairs disappearing.
     if (firstClick !== "" && secondClick !== "") {
       if (firstClick === secondClick) {
-        paired();
-        resetClicks();
+        setTimeout(paired, wait);
+        setTimeout(resetClicks, wait);
       } else {
-        resetClicks();
+        setTimeout(resetClicks, wait);
       }
     }
     // set the previous clicked item as clicked
