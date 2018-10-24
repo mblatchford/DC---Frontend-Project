@@ -1,6 +1,7 @@
 // let queryStr = "planets";
+    let numberImages = 9;
 
-function getImages(queryStr){
+function getImages(queryStr, numImages){
     // debugger;
      // fetch photos from api dynamically based on query 
     // abstracted accessKey into seperate file
@@ -13,17 +14,20 @@ function getImages(queryStr){
       }
     })
     //stringified data needs to be converted to json for use
-    .then(str => str.json())
+    .then(str => {
+        return Promise.all([str.json(), numImages]);
+    })
     //pass json to image extractor
     .then(packageImg)
     //.then(next function call -> @ian)
 }
 
-// loop json array, extract 8 small images, append attribution data
-function packageImg(jsonData){
+// loop json array, extract small images, append attribution data
+function packageImg([jsonData,numImgs]){
+    // const numImgs = `${jsonData[1]}`;
     //a given query will return the same images from the api
     //randomizing the images taken will allow for a better user experience accross
-    //games with the same img query 
+    //games with the same query 
     function getRandomIntInclusive(min=0, max=jsonData.results.length-1) {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -31,7 +35,7 @@ function packageImg(jsonData){
       }
 
     let imgArray = [];
-    for(let i = 0; i < 8; i++ ){
+    for(let i = 0; i < numImgs; i++ ){
         // new randomized index with each loop
         let randomized = getRandomIntInclusive();
         // keep reintializing a new imgObj in the loop
@@ -47,6 +51,6 @@ function packageImg(jsonData){
        imgArray.push(imgObj);
     }
     //uncomment the below to get a handle on what is being passed back to the promise chain
-    // console.table(imgArray);
+    console.table(imgArray);
     return imgArray;
 }

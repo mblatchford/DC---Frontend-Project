@@ -10,7 +10,7 @@ let pageSize = 10;
 
 let numSounds = 8;
 
-function getSounds(queryStr,durationEnd,pageSize,numberSounds){
+function getSounds(queryStr,durationEnd,pageSize,numSounds){
     // fetch sounds from api dynamically based on query 
     // include parameter for duration match in secondsgit
     // include parameter of pageSize for num results per fetch
@@ -20,7 +20,6 @@ function getSounds(queryStr,durationEnd,pageSize,numberSounds){
     fetch(URI)
     //stringified data needs to be converted to json for use
     .then(str => {
-        const numSounds = numberSounds;
         return Promise.all([str.json(), numSounds]);
     })
     //pass json to sound extractor
@@ -29,14 +28,12 @@ function getSounds(queryStr,durationEnd,pageSize,numberSounds){
 }
 
 // loop json array, extract 8 small sounds, append attribution data
-function packageSoundID(jsonData){
-    debugger;
-     const numSounds = `${jsonData[1]}`;
+function packageSoundID([jsonData, numSounds]){
     //a given query will return the same sounds from the api
     //randomizing the sounds taken will allow for a better user experience accross
     //games with the same query 
 
-    function getRandomIntInclusive(min=0, max=jsonData[0].results.length-1) {
+    function getRandomIntInclusive(min=0, max=jsonData.results.length-1) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
@@ -45,16 +42,18 @@ function packageSoundID(jsonData){
     for(let i = 0; i < numSounds; i++ ){
         // new randomized index with each loop
         let randomized = getRandomIntInclusive();
+        // keep reintializing a new soundObj in the loop
+        // else if outside, just accesing memory pointers to one object
         let soundObj = {
             id: "",
             attr_name: "",
             attr_url: "",
             soundFile: ""
         }
-        soundObj.id         =`${jsonData[0].results[randomized].id}`;
-        soundObj.attr_name  =`${jsonData[0].results[randomized].username}`;
-        soundObj.attr_url   =`${jsonData[0].results[randomized].url}`;
-        soundObj.soundFile  =`${jsonData[0].results[randomized].previews["preview-hq-mp3"]}`;
+        soundObj.id         =`${jsonData.results[randomized].id}`;
+        soundObj.attr_name  =`${jsonData.results[randomized].username}`;
+        soundObj.attr_url   =`${jsonData.results[randomized].url}`;
+        soundObj.soundFile  =`${jsonData.results[randomized].previews["preview-hq-mp3"]}`;
         soundsArray.push(soundObj);
     }
     //uncomment the below to get a handle on what is being passed back to the promise chain
