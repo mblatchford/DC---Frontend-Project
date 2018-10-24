@@ -22,8 +22,6 @@ let secondClick = "";
 let count = 0;
 let wait = 800;
 
-let lastClick = null;
-
 const board = document.querySelector("[data-board]");
 const tileContainer = document.createElement("section");
 tileContainer.setAttribute("class", "boardy");
