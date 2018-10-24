@@ -45,7 +45,7 @@ const arrayOfImages = [
 // container for images is appended and array of images is concatenated to double up the images.
 let gameBoard = arrayOfImages.concat(arrayOfImages);
 
-// sorts the cards randomly
+// function to sort 8(16) cards randomly.
 gameBoard.sort(() => 0.5 - Math.random());
 
 let firstClick = "";
@@ -62,11 +62,24 @@ board.appendChild(imageContainer);
 
 // loops through array of images to append to div
 gameBoard.forEach(item => {
+  // card elements are created with name
   const imageCard = document.createElement("div");
   imageCard.classList.add("memcard");
   imageCard.dataset.name = item.name;
-  imageCard.style.backgroundImage = `url(${item.image})`;
+
+  //   front card element created
+  const frontOf = document.createElement("div");
+  frontOf.classList.add("front");
+
+  // back card element created
+  const backOf = document.createElement("div");
+  backOf.classList.add("back");
+  backOf.style.backgroundImage = `url(${item.image})`;
+
+  //   imageCard.style.backgroundImage = `url(${item.image})`;
   imageContainer.appendChild(imageCard);
+  imageCard.appendChild(frontOf);
+  imageCard.appendChild(backOf);
 });
 
 const paired = () => {
@@ -76,6 +89,7 @@ const paired = () => {
   });
 };
 
+// function to reset clicks
 const resetClicks = () => {
   firstClick = "";
   secondClick = "";
@@ -93,29 +107,34 @@ imageContainer.addEventListener("click", function(e) {
   let selected = e.target;
   //   only allow the div cards to be selected and
   //   not allow the same item to be selected
-  if (selected.nodeName === "section" || selected === lastClick) {
+  if (
+    selected.nodeName === "section" ||
+    selected === lastClick ||
+    selected.parentNode.classList.contains("clicked")
+  ) {
     return;
   }
-
+  // reset counter after 2 clicks
   if (count < 2) {
     count++;
     if (count === 1) {
       // the first click is assigned
-      firstClick = selected.dataset.name;
+      firstClick = selected.parentNode.dataset.name;
       console.log(firstClick);
-      selected.classList.add("clicked");
+      selected.parentNode.classList.add("clicked");
     } else {
       // the second click is assigned
-      secondClick = selected.dataset.name;
+      secondClick = selected.parentNode.dataset.name;
       console.log(secondClick);
-      selected.classList.add("clicked");
+      selected.parentNode.classList.add("clicked");
     }
     // as long as the first and second clicks are not empty
     // and the first click matches the second click
-    // the paired function is called. also added a delay between 
-    // resetting clicks and matched pairs disappearing.
+    // the paired function is called.
     if (firstClick !== "" && secondClick !== "") {
       if (firstClick === secondClick) {
+        //   added a delay between resetting clicks and
+        // matched pairs disappearing.
         setTimeout(paired, wait);
         setTimeout(resetClicks, wait);
       } else {
@@ -126,13 +145,3 @@ imageContainer.addEventListener("click", function(e) {
     lastClick = selected;
   }
 });
-
-// function to randomize 8 cards
-
-// function to display 8 cards
-
-// function that allows only 2 cards to be selected at a time
-
-// function that when 2 cards are matched, those cards are kept visible
-
-// function to reset guess counter after 2 guesses
