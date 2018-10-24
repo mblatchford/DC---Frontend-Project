@@ -1,14 +1,14 @@
-// query is checked ahead of time and coded to button init
-let queryStr = "cartoon";
+// query will be hardcoded to button intialization
+// let queryStr = "animals";
 // durationEnd allows for searching longer or shorter effects
 // may not be necessary in final build, but can be dynamically created
-let durationEnd = 3;
+// let durationEnd = 3;
 // pageSize should increase as level size increases so not to pull
 // down unnecessary amounts of data. Should leave enough overhead
 // for some randomization though
-let pageSize = 10;
-
-let numSounds = 8;
+// let pageSize = 10;
+// numsounds is dynamically passed to function at init as more tiles are created
+// let numSounds = 8;
 
 function getSounds(queryStr,durationEnd,pageSize,numSounds){
     // fetch sounds from api dynamically based on query 

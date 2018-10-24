@@ -1,11 +1,17 @@
-// let queryStr = "planets";
-    let numberImages = 9;
+// query will be hardcoded to button intialization
+ let queryStr = "animals";
+// pageSize should increase as level size increases so not to pull
+// down unnecessary amounts of data. Should leave enough overhead
+// for some randomization though
+ let pageSize = 50;
+// numImages is dynamically passed to function at init as more tiles are created
+ let numImages = 8;
 
 function getImages(queryStr, numImages){
     // debugger;
      // fetch photos from api dynamically based on query 
     // abstracted accessKey into seperate file
-    const URI = `https://api.unsplash.com/search/photos/?query=${queryStr}&orientation=squarish&page=1&per_page=100&client_id=${accessKeyUnsplash}`;
+    const URI = `https://api.unsplash.com/search/photos/?query=${queryStr}&orientation=squarish&page=1&per_page=${pageSize}&client_id=${accessKeyUnsplash}`;
     fetch(URI, {
     headers: {
         'Content-Type': 'application/json',
@@ -24,7 +30,6 @@ function getImages(queryStr, numImages){
 
 // loop json array, extract small images, append attribution data
 function packageImg([jsonData,numImgs]){
-    // const numImgs = `${jsonData[1]}`;
     //a given query will return the same images from the api
     //randomizing the images taken will allow for a better user experience accross
     //games with the same query 
