@@ -27,7 +27,7 @@ function getSounds(queryStr,durationEnd,pageSize,numSounds){
     // .then(pass to next function)
 }
 
-// loop json array, extract 8 small sounds, append attribution data
+// loop json array, extractd small sounds, append attribution data
 function packageSoundID([jsonData, numSounds]){
     //a given query will return the same sounds from the api
     //randomizing the sounds taken will allow for a better user experience accross
