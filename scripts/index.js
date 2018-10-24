@@ -44,6 +44,10 @@ const arrayOfImages = [
 
 // container for images is appended and array of images is concatenated to double up the images.
 let gameBoard = arrayOfImages.concat(arrayOfImages);
+
+// sorts the cards randomly
+gameBoard.sort(() => 0.5 - Math.random());
+
 const board = document.querySelector("[data-board]");
 const imageContainer = document.createElement("div");
 imageContainer.setAttribute("class", "boardy");
@@ -56,6 +60,17 @@ gameBoard.forEach(item => {
   imageCard.dataset.name = item.name;
   imageCard.style.backgroundImage = `url(${item.image})`;
   imageContainer.appendChild(imageCard);
+});
+
+// an event listener for the game board
+imageContainer.addEventListener("click", function(e) {
+  // console.log('i clicked');
+  let selected = e.target;
+
+  if (selected.nodeName === "div") {
+    return;
+  }
+  selected.classList.add("clicked");
 });
 
 // function to randomize 8 cards
