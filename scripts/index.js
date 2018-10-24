@@ -80,7 +80,7 @@ tileContainer.addEventListener("click", function(e) {
   //   if there's a pair selected, the user cannot click
   //   the same tile again.
   if (
-    selected.nodeName === "section" ||
+    selected.nodeName === "SECTION" ||
     selected.parentNode.classList.contains("clicked") ||
     selected.parentNode.classList.contains("paired")
   ) {
