@@ -6,21 +6,25 @@
 
 function button() {
 
+  // the promise.all will wait to pass its data to the anonymous function until both getImages and getSounds are resolved 
   Promise.all([getImages(queryStr, pageSize, numImages), getSounds(queryStr, durationEnd, pageSize, numSounds)]).then(function(data){
-  // console.log(data);
+  //dataObj will hold the array of imgs and the array of snds in one combined array
   let dataObj = [];
+  // the promise.all passed an array of two values [images,sounds]
+  // since the lengths are equal, just use the first array as our loop argument
+  // when using forEach instead of a std for loop, the array index is handled behind the scenes
+  // by including the 'i' as a parameter I can make that index available
   data[0].forEach((element, i) => {
-    // console.log(element);
-    // console.log(data[1][i]);
+    // with no conflicting keys across imgs and sounds, temp object will add all key/value pairs 
+    // in a single object, (the empty object provided in the first argument), from the images and from the sounds object
     let temp = Object.assign({}, element,data[1][i]);
-    // console.table(temp);
+    // push each unified img/snd object into dataObj array
     dataObj.push(temp);
   });
-// console.table(dataObj);
+// return the completed dataObj array to promise.all which will pass it to the next link in the chain
 return dataObj;
 })
 .then(gameStart)
-  
 }
 
 function gameStart(dataObj) {
@@ -138,5 +142,6 @@ function gameStart(dataObj) {
     }
   });
 }
+
 
 button();

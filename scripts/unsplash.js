@@ -24,8 +24,6 @@ function getImages(queryStr, pageSize, numImages){
     })
     //pass json to image extractor
     .then(packageImg)
-    // .then(gameStart)
-
 }
 
 // loop json array, extract small images, append attribution data
