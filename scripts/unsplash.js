@@ -28,7 +28,7 @@ function getImages(queryStr, pageSize, numImages){
 }
 
 // loop json array, extract small images, append attribution data
-function packageImg([jsonData, numImgs]){
+function packageImg([jsonData, numImages]){
     //a given query will return the same images from the api
     //randomizing the images taken will allow for a better user experience accross
     //games with the same query 
@@ -37,11 +37,21 @@ function packageImg([jsonData, numImgs]){
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
       }
-
+    
+    //non-repeating number logic
+    let rand = []; 
+    while (rand.length < numImages){
+        let num = getRandomIntInclusive();
+        // ! reverses logic
+        // .includes would return true if found
+        // so if num not found add it else try again
+        if (!rand.includes(num)){
+            rand.push(num);
+        }
+    }
+    console.log(`rand[] ${rand}`);
     let imgArray = [];
-    for(let i = 0; i < numImgs; i++ ){
-        // new randomized index with each loop
-        let randomized = getRandomIntInclusive();
+    rand.forEach(index => {
         // keep reintializing a new imgObj in the loop
         // else if outside, just accesing memory pointers to one object
         let imgObj = {
@@ -49,11 +59,28 @@ function packageImg([jsonData, numImgs]){
             attr_name: "",
             attr_url: ""
         };
-       imgObj.src = `${jsonData.results[randomized].urls.small}`;
-       imgObj.attr_name = `${jsonData.results[randomized].user.name}`;
-       imgObj.attr_url = `${jsonData.results[randomized].links.html}`;
+       imgObj.src = `${jsonData.results[index].urls.small}`;
+       imgObj.attr_name = `${jsonData.results[index].user.name}`;
+       imgObj.attr_url = `${jsonData.results[index].links.html}`;
        imgArray.push(imgObj);
-    }
+    }); 
+
+    // let imgArray = [];
+    // for(let i = 0; i < numImgs; i++ ){
+    //     // new randomized index with each loop
+    //     let randomized = getRandomIntInclusive();
+    //     // keep reintializing a new imgObj in the loop
+    //     // else if outside, just accesing memory pointers to one object
+    //     let imgObj = {
+    //         src: "",
+    //         attr_name: "",
+    //         attr_url: ""
+    //     };
+    //    imgObj.src = `${jsonData.results[randomized].urls.small}`;
+    //    imgObj.attr_name = `${jsonData.results[randomized].user.name}`;
+    //    imgObj.attr_url = `${jsonData.results[randomized].links.html}`;
+    //    imgArray.push(imgObj);
+    // }
     //uncomment the below to get a handle on what is being passed back to the promise chain
     console.table(imgArray);
     return imgArray;

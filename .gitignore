@@ -1,2 +1,4 @@
 # ignore api keys
 config.js
+# ignore ds_store files
+.DS_Store
