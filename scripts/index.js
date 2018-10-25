@@ -5,7 +5,8 @@
 // guess count is reset after 2 guesses.
 
 function button() {
-  getImages(queryStr, pageSize, numImages);
+  // getImages(queryStr, pageSize, numImages);
+  getSounds(queryStr,durationEnd,pageSize,numSounds);
 }
 
 function gameStart(dataObj) {

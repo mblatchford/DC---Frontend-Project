@@ -3,9 +3,9 @@
 // pageSize should increase as level size increases so not to pull
 // down unnecessary amounts of data. Should leave enough overhead
 // for some randomization though
- let pageSize = 50;
+//  let pageSize = 50;
 // numImages is dynamically passed to function at init as more tiles are created
- let numImages = 8;
+//  let numImages = 8;
 
 function getImages(queryStr, pageSize, numImages){
      // fetch photos from api dynamically based on query 
@@ -59,29 +59,13 @@ function packageImg([jsonData, numImages]){
             attr_name: "",
             attr_url: ""
         };
-       imgObj.src = `${jsonData.results[index].urls.small}`;
+       imgObj.src       = `${jsonData.results[index].urls.small}`;
        imgObj.attr_name = `${jsonData.results[index].user.name}`;
-       imgObj.attr_url = `${jsonData.results[index].links.html}`;
+       imgObj.attr_url  = `${jsonData.results[index].links.html}`;
        imgArray.push(imgObj);
     }); 
 
-    // let imgArray = [];
-    // for(let i = 0; i < numImgs; i++ ){
-    //     // new randomized index with each loop
-    //     let randomized = getRandomIntInclusive();
-    //     // keep reintializing a new imgObj in the loop
-    //     // else if outside, just accesing memory pointers to one object
-    //     let imgObj = {
-    //         src: "",
-    //         attr_name: "",
-    //         attr_url: ""
-    //     };
-    //    imgObj.src = `${jsonData.results[randomized].urls.small}`;
-    //    imgObj.attr_name = `${jsonData.results[randomized].user.name}`;
-    //    imgObj.attr_url = `${jsonData.results[randomized].links.html}`;
-    //    imgArray.push(imgObj);
-    // }
     //uncomment the below to get a handle on what is being passed back to the promise chain
-    console.table(imgArray);
+    //console.table(imgArray);
     return imgArray;
 }
