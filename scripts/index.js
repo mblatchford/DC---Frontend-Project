@@ -1,7 +1,7 @@
 // a memory game that pulls images/sounds from an API. the user will match
-// the face of the cards. 8 cards are randomized and displayed. only 2 cards
-// may be selected at a time. after 2 cards are selected, cards flip back
-// unless the cards are correct, in which case the cards stay visible.
+// the face of the tiles. 8 tiles are randomized and displayed. only 2 tiles
+// may be selected at a time. after 2 tiles are selected, tiles flip back
+// unless the tiles are correct, in which case the tiles stay visible.
 // guess count is reset after 2 guesses.
 
 function button() {
@@ -32,7 +32,7 @@ function gameStart(dataObj) {
   // container for images is appended and array of images is concatenated to double up the images.
   let gameBoard = arrayOfImgsSnds.concat(arrayOfImgsSnds);
 
-  // function to sort 8(16) cards randomly.
+  // function to sort 8(16) tiles randomly.
   gameBoard.sort(() => 0.5 - Math.random());
 
   let firstClick = "";
@@ -47,9 +47,9 @@ function gameStart(dataObj) {
 
   // loops through array of images to append to div
   gameBoard.forEach(item => {
-    // card elements are created with name
+    // tile elements are created with name
     const tile = document.createElement("div");
-    tile.classList.add("memcard");
+    tile.classList.add("memtile");
     tile.dataset.attrImg_name = item.attrImg_name;
     tile.dataset.attrImg_url = item.attrImg_url;
     tile.dataset.name = item.imgSrc;
@@ -62,11 +62,11 @@ function gameStart(dataObj) {
     // tileSound.type = "audio/mpeg";
 
 
-    //   back of card element created
+    //   back of tile element created
     const tileBack = document.createElement("div");
     tileBack.classList.add("front");
 
-    // face of card element created
+    // face of tile element created
     const tileFace = document.createElement("div");
     tileFace.classList.add("back");
     tileFace.style.backgroundImage = `url(${item.imgSrc})`;
@@ -77,7 +77,6 @@ function gameStart(dataObj) {
     // tile.appendChild(tileSound);
     
   });
-  // debugger;
 
   const paired = () => {
     let chosen = document.querySelectorAll(".clicked");
@@ -102,7 +101,7 @@ function gameStart(dataObj) {
   tileContainer.addEventListener("click", function(e) {
     // console.log('i clicked');
     let selected = e.target;
-    //   only allow the div cards to be selected and
+    //   only allow the div tiles to be selected and
     //   if there's a pair selected, the user cannot click
     //   the same tile again.
     if (
