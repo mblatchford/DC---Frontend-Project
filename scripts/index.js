@@ -5,8 +5,8 @@
 // guess count is reset after 2 guesses.
 
 function button() {
-  // getImages(queryStr, pageSize, numImages);
-  getSounds(queryStr,durationEnd,pageSize,numSounds);
+  getImages(queryStr, pageSize, numImages);
+  // getSounds(queryStr,durationEnd,pageSize,numSounds);
 }
 
 function gameStart(dataObj) {
@@ -70,7 +70,7 @@ function gameStart(dataObj) {
   };
 
   // an event listener for the game board
-  tileContainer.addEventListener("click", function(e) {
+  tileContainer.addEventListener("click", function (e) {
     // console.log('i clicked');
     let selected = e.target;
     //   only allow the div cards to be selected and
