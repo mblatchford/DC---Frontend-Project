@@ -1,7 +1,7 @@
 // a memory game that pulls images/sounds from an API. the user will match
-// the face of the cards. 8 cards are randomized and displayed. only 2 cards
-// may be selected at a time. after 2 cards are selected, cards flip back
-// unless the cards are correct, in which case the cards stay visible.
+// the face of the tiles. 8 tiles are randomized and displayed. only 2 tiles
+// may be selected at a time. after 2 tiles are selected, tiles flip back
+// unless the tiles are correct, in which case the tiles stay visible.
 // guess count is reset after 2 guesses.
 
 function button() {
@@ -32,7 +32,7 @@ function gameStart(dataObj) {
   // container for images is appended and array of images is concatenated to double up the images.
   let gameBoard = arrayOfImgsSnds.concat(arrayOfImgsSnds);
 
-  // function to sort 8(16) cards randomly.
+  // function to sort 8(16) tiles randomly.
   gameBoard.sort(() => 0.5 - Math.random());
 
   let firstClick = "";
@@ -47,9 +47,9 @@ function gameStart(dataObj) {
 
   // loops through array of images to append to div
   gameBoard.forEach(item => {
-    // card elements are created with name
+    // tile elements are created with name
     const tile = document.createElement("div");
-    tile.classList.add("memcard");
+    tile.classList.add("memtile");
     tile.dataset.attrImg_name = item.attrImg_name;
     tile.dataset.attrImg_url = item.attrImg_url;
     tile.dataset.name = item.imgSrc;
@@ -61,11 +61,11 @@ function gameStart(dataObj) {
     // tileSound.type = "audio/mpeg";
 
 
-    //   back of card element created
+    //   back of tile element created
     const tileBack = document.createElement("div");
     tileBack.classList.add("front");
 
-    // face of card element created
+    // face of tile element created
     const tileFace = document.createElement("div");
     tileFace.classList.add("back");
     tileFace.style.backgroundImage = `url(${item.imgSrc})`;
@@ -75,8 +75,51 @@ function gameStart(dataObj) {
     tile.appendChild(tileFace);
     tile.appendChild(tileSound);
     
+
+  // an event listener for the game board
+    tile.addEventListener("click", function (e) {
+      // console.log('i clicked');
+      let selected = e.target;
+      //   only allow the div tiles to be selected and
+      //   if there's a pair selected, the user cannot click
+      //   the same tile again.
+      if (
+        selected.nodeName === "SECTION" ||
+        selected.parentNode.classList.contains("clicked") ||
+        selected.parentNode.classList.contains("paired")
+      ) {
+        return;
+      }
+      // reset counter after 2 clicks
+      if (count < 2) {
+        count++;
+        if (count === 1) {
+          firstClick = selected.parentNode.dataset.name;
+          //   console.log(firstClick);
+          selected.parentNode.classList.add("clicked");
+          selected.parentNode.querySelector("audio").play();
+        } else {
+          secondClick = selected.parentNode.dataset.name;
+          //   console.log(secondClick);
+          selected.parentNode.classList.add("clicked");
+          selected.parentNode.querySelector("audio").play();
+        }
+        // as long as the first and second clicks are not empty
+        // and the first click matches the second click
+        // the paired function is called.
+        if (firstClick !== "" && secondClick !== "") {
+          if (firstClick === secondClick) {
+            //   added a delay between resetting clicks and
+            // matched pairs disappearing.
+            setTimeout(paired, wait);
+            setTimeout(resetClicks, wait);
+          } else {
+            setTimeout(resetClicks, wait);
+          }
+        }
+      }
+    });
   });
-  // debugger;
 
   const paired = () => {
     let chosen = document.querySelectorAll(".clicked");
@@ -97,50 +140,6 @@ function gameStart(dataObj) {
     });
   };
 
-  // an event listener for the game board
-  tileContainer.addEventListener("click", function (e) {
-    // console.log('i clicked');
-    let selected = e.target;
-    //   only allow the div cards to be selected and
-    //   if there's a pair selected, the user cannot click
-    //   the same tile again.
-    if (
-      selected.nodeName === "SECTION" ||
-      selected.parentNode.classList.contains("clicked") ||
-      selected.parentNode.classList.contains("paired")
-    ) {
-      return;
-    }
-    // reset counter after 2 clicks
-    if (count < 2) {
-      count++;
-      if (count === 1) {
-        firstClick = selected.parentNode.dataset.name;
-        //   console.log(firstClick);
-        selected.parentNode.classList.add("clicked");
-        selected.parentNode.querySelector("audio").play();
-
-      } else {
-        secondClick = selected.parentNode.dataset.name;
-        //   console.log(secondClick);
-        selected.parentNode.classList.add("clicked");
-        selected.parentNode.querySelector("audio").play();
-      }
-      // as long as the first and second clicks are not empty
-      // and the first click matches the second click
-      // the paired function is called.
-      if (firstClick !== "" && secondClick !== "") {
-        if (firstClick === secondClick) {
-          //   added a delay between resetting clicks and
-          // matched pairs disappearing.
-          setTimeout(paired, wait);
-          setTimeout(resetClicks, wait);
-        } else {
-          setTimeout(resetClicks, wait);
-        }
-      }
-    }
-  });
 }
 
 

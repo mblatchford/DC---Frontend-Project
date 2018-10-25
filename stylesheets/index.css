@@ -61,7 +61,7 @@ body {
 }
 
 /* styling for individual images (imageCard) */
-.memcard {
+.memtile {
   transform-style: preserve-3d;
   width: 20%;
   height: 20vw; 
@@ -90,8 +90,8 @@ body {
 
 .back {
   transform: rotateY(180deg);
-  background-color: white;
-  background-size: contain;
+  background-color: black;
+  background-size:cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -114,14 +114,14 @@ body {
   .main-header {
       margin-bottom: 0;
   }
-  .memcard {
+  .memtile {
       height: 20vw;
   }
 }
 /* ================================== */
 /* next media width styling */
 @media screen and (min-width: 768px) {
-  .memcard {
+  .memtile {
       height: 13vw;
       width: 13vw;
       margin: 1% 3.6%
@@ -134,7 +134,7 @@ body {
     width: 70%;
   }
   
-  .memcard {
+  .memtile {
     width: 11vw;
     height: 11vw;
   margin: 0.3% 3.5%;

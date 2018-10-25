@@ -1,5 +1,5 @@
 // query will be hardcoded to button intialization
-let queryStr = "animals";
+let queryStr = "dogs";
 // pageSize should increase as level size increases so not to pull
 // down unnecessary amounts of data. Should leave enough overhead
 // for some randomization though
