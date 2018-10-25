@@ -5,8 +5,22 @@
 // guess count is reset after 2 guesses.
 
 function button() {
-  getImages(queryStr, pageSize, numImages);
-  // getSounds(queryStr, durationEnd, pageSize, numSounds);
+
+  Promise.all([getImages(queryStr, pageSize, numImages), getSounds(queryStr, durationEnd, pageSize, numSounds)]).then(function(data){
+  // console.log(data);
+  let dataObj = [];
+  data[0].forEach((element, i) => {
+    // console.log(element);
+    // console.log(data[1][i]);
+    let temp = Object.assign({}, element,data[1][i]);
+    // console.table(temp);
+    dataObj.push(temp);
+  });
+// console.table(dataObj);
+return dataObj;
+})
+.then(gameStart)
+  
 }
 
 function gameStart(dataObj) {
@@ -32,14 +46,17 @@ function gameStart(dataObj) {
     // card elements are created with name
     const tile = document.createElement("div");
     tile.classList.add("memcard");
-    tile.dataset.attr_name = item.attr_name;
-    tile.dataset.attr_url = item.attr_url;
-    tile.dataset.name = item.src;
-    tile.dataset.soundFile = item.soundFile;
+    tile.dataset.attrImg_name = item.attrImg_name;
+    tile.dataset.attrImg_url = item.attrImg_url;
+    tile.dataset.name = item.imgSrc;
+    
+  
+    // // sound anchor created
+    // const tileSound = document.createElement("audio");
+    // // debugger;
+    // tileSound.src = item.soundFile;
+    // tileSound.type = "audio/mpeg";
 
-    // sound anchor created
-    const tileSound = document.createElement("audio");
-    tileSound.setAttribute = `src(${item.soundFile})`;
 
     //   back of card element created
     const tileBack = document.createElement("div");
@@ -48,13 +65,15 @@ function gameStart(dataObj) {
     // face of card element created
     const tileFace = document.createElement("div");
     tileFace.classList.add("back");
-    tileFace.style.backgroundImage = `url(${item.src})`;
+    tileFace.style.backgroundImage = `url(${item.imgSrc})`;
 
     tileContainer.appendChild(tile);
     tile.appendChild(tileBack);
     tile.appendChild(tileFace);
-    tile.appendChild(tileSound);
+    // tile.appendChild(tileSound);
+    
   });
+  // debugger;
 
   const paired = () => {
     let chosen = document.querySelectorAll(".clicked");
@@ -96,12 +115,12 @@ function gameStart(dataObj) {
         firstClick = selected.parentNode.dataset.name;
         //   console.log(firstClick);
         selected.parentNode.classList.add("clicked");
-        tileSound.play();
+        // selected.parentNode.soundFile.play();
       } else {
         secondClick = selected.parentNode.dataset.name;
         //   console.log(secondClick);
         selected.parentNode.classList.add("clicked");
-        tileSound.play();
+        // selected.parentNode.soundFile.play();
       }
       // as long as the first and second clicks are not empty
       // and the first click matches the second click
@@ -119,3 +138,5 @@ function gameStart(dataObj) {
     }
   });
 }
+
+button();
