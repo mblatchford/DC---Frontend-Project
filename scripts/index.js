@@ -76,6 +76,50 @@ function gameStart(dataObj) {
     tile.appendChild(tileFace);
     // tile.appendChild(tileSound);
     
+
+  // an event listener for the game board
+    tile.addEventListener("click", function (e) {
+      // console.log('i clicked');
+      let selected = e.target;
+      //   only allow the div tiles to be selected and
+      //   if there's a pair selected, the user cannot click
+      //   the same tile again.
+      if (
+        selected.nodeName === "SECTION" ||
+        selected.parentNode.classList.contains("clicked") ||
+        selected.parentNode.classList.contains("paired")
+      ) {
+        return;
+      }
+      // reset counter after 2 clicks
+      if (count < 2) {
+        count++;
+        if (count === 1) {
+          firstClick = selected.parentNode.dataset.name;
+          //   console.log(firstClick);
+          selected.parentNode.classList.add("clicked");
+          // selected.parentNode.soundFile.play();
+        } else {
+          secondClick = selected.parentNode.dataset.name;
+          //   console.log(secondClick);
+          selected.parentNode.classList.add("clicked");
+          // selected.parentNode.soundFile.play();
+        }
+        // as long as the first and second clicks are not empty
+        // and the first click matches the second click
+        // the paired function is called.
+        if (firstClick !== "" && secondClick !== "") {
+          if (firstClick === secondClick) {
+            //   added a delay between resetting clicks and
+            // matched pairs disappearing.
+            setTimeout(paired, wait);
+            setTimeout(resetClicks, wait);
+          } else {
+            setTimeout(resetClicks, wait);
+          }
+        }
+      }
+    });
   });
 
   const paired = () => {
@@ -97,49 +141,6 @@ function gameStart(dataObj) {
     });
   };
 
-  // an event listener for the game board
-  tileContainer.addEventListener("click", function (e) {
-    // console.log('i clicked');
-    let selected = e.target;
-    //   only allow the div tiles to be selected and
-    //   if there's a pair selected, the user cannot click
-    //   the same tile again.
-    if (
-      selected.nodeName === "SECTION" ||
-      selected.parentNode.classList.contains("clicked") ||
-      selected.parentNode.classList.contains("paired")
-    ) {
-      return;
-    }
-    // reset counter after 2 clicks
-    if (count < 2) {
-      count++;
-      if (count === 1) {
-        firstClick = selected.parentNode.dataset.name;
-        //   console.log(firstClick);
-        selected.parentNode.classList.add("clicked");
-        // selected.parentNode.soundFile.play();
-      } else {
-        secondClick = selected.parentNode.dataset.name;
-        //   console.log(secondClick);
-        selected.parentNode.classList.add("clicked");
-        // selected.parentNode.soundFile.play();
-      }
-      // as long as the first and second clicks are not empty
-      // and the first click matches the second click
-      // the paired function is called.
-      if (firstClick !== "" && secondClick !== "") {
-        if (firstClick === secondClick) {
-          //   added a delay between resetting clicks and
-          // matched pairs disappearing.
-          setTimeout(paired, wait);
-          setTimeout(resetClicks, wait);
-        } else {
-          setTimeout(resetClicks, wait);
-        }
-      }
-    }
-  });
 }
 
 
