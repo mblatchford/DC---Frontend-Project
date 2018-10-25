@@ -53,12 +53,11 @@ function gameStart(dataObj) {
     tile.dataset.attrImg_name = item.attrImg_name;
     tile.dataset.attrImg_url = item.attrImg_url;
     tile.dataset.name = item.imgSrc;
+    tile.dataset.soundFile = item.soundFile;
     
-  
     // // sound anchor created
-    // const tileSound = document.createElement("audio");
-    // // debugger;
-    // tileSound.src = item.soundFile;
+    const tileSound = document.createElement("audio");
+    tileSound.src = `src(${item.soundFile})`;
     // tileSound.type = "audio/mpeg";
 
 
@@ -74,7 +73,7 @@ function gameStart(dataObj) {
     tileContainer.appendChild(tile);
     tile.appendChild(tileBack);
     tile.appendChild(tileFace);
-    // tile.appendChild(tileSound);
+    tile.appendChild(tileSound);
     
   });
   // debugger;
@@ -119,12 +118,13 @@ function gameStart(dataObj) {
         firstClick = selected.parentNode.dataset.name;
         //   console.log(firstClick);
         selected.parentNode.classList.add("clicked");
-        // selected.parentNode.soundFile.play();
+        document.querySelector("audio").play();
+
       } else {
         secondClick = selected.parentNode.dataset.name;
         //   console.log(secondClick);
         selected.parentNode.classList.add("clicked");
-        // selected.parentNode.soundFile.play();
+        document.querySelector("audio").play();
       }
       // as long as the first and second clicks are not empty
       // and the first click matches the second click
