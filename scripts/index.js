@@ -98,7 +98,7 @@ function gameStart(dataObj) {
   };
 
   // an event listener for the game board
-  tileContainer.addEventListener("click", function(e) {
+  tileContainer.addEventListener("click", function (e) {
     // console.log('i clicked');
     let selected = e.target;
     //   only allow the div tiles to be selected and

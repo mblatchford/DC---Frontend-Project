@@ -9,50 +9,89 @@ html {
 }
 html,
 body {
-  margin: 20px 0;
+  margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
 }
 
-/* styling for the over game board */
-.boardy {
+/*base site made around  360px */
+
+/* HEADER STYLES  */
+.main-header {
   display: flex;
-  flex-wrap: wrap;
-  max-width: 960px;
-  margin: 0 auto;
+  justify-content: center;
+  height: 5%;
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.main-header h1 {
+  margin: 0;
+  padding: 0;
+}
+
+/* styling for game board area */
+.game-box {
+  outline: 1px solid red;
+  display: flex;
+  height: 95%;
+  width: 100%;
   justify-content: center;
 }
 
+/* styling for the over game board */
+.boardy {
+  /* display: flex;
+  flex-wrap: wrap;
+  max-width: 960px;
+  margin: 0 auto;
+  justify-content: center; */
+  outline: 1px solid pink;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 2%;
+    width: 100%;
+    height: 100%;
+}
+
 /* styling for individual images (imageCard) */
-.memcard {
-  position: relative;
-  transition: all 0.4s linear;
+.memtile {
   transform-style: preserve-3d;
-  margin: 5px;
-}
+  width: 20%;
+  height: 20vw; 
+  margin: 1% 1%;
+  transition: all 500ms ease-out;
 
-.memcard,
+}
+/* have the front/back fill the entire area of the card */
 .back,
 .front {
-  height: 150px;
-  width: 150px;
-}
-
-.back,
-.front {
+  height: 100%;
+  width: 100%;
+  box-shadow: -13px 11px 25px 1px rgba(0,0,0,0.55);
+  border-radius: 10px;
   position: absolute;
   backface-visibility: hidden;
 }
 
 .front {
-  background: #fad566;
+  background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(violet, yellow);
+    background-size: cover;
 }
 
 .back {
   transform: rotateY(180deg);
-  background-color: white;
-  background-size: contain;
+  background-color: black;
+  background-size:cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -62,6 +101,42 @@ body {
   transform: rotateY(180deg);
 }
 
+
 .paired .front {
   background: white !important;
+
+}
+
+
+/* ================================== */
+/* next media width styling */
+@media screen and (min-width: 360px) {
+  .main-header {
+      margin-bottom: 0;
+  }
+  .memtile {
+      height: 20vw;
+  }
+}
+/* ================================== */
+/* next media width styling */
+@media screen and (min-width: 768px) {
+  .memtile {
+      height: 13vw;
+      width: 13vw;
+      margin: 1% 3.6%
+  }
+}
+/* ================================== */
+/* next media width styling */
+@media screen and (min-width: 1200px) {
+  .boardy{
+    width: 70%;
+  }
+  
+  .memtile {
+    width: 11vw;
+    height: 11vw;
+  margin: 0.3% 3.5%;
+  }
 }

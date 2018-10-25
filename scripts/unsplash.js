@@ -1,14 +1,14 @@
 // query will be hardcoded to button intialization
-//  let queryStr = "animals";
+let queryStr = "animals";
 // pageSize should increase as level size increases so not to pull
 // down unnecessary amounts of data. Should leave enough overhead
 // for some randomization though
-//  let pageSize = 50;
+let pageSize = 50;
 // numImages is dynamically passed to function at init as more tiles are created
- let numImages = 8;
+let numImages = 8;
 
-function getImages(queryStr, pageSize, numImages){
-     // fetch photos from api dynamically based on query 
+function getImages(queryStr, pageSize, numImages) {
+    // fetch photos from api dynamically based on query 
     // abstracted accessKey into seperate file
     const URI = `https://api.unsplash.com/search/photos/?query=${queryStr}&orientation=squarish&page=1&per_page=${pageSize}&client_id=${accessKeyUnsplash}`;
     return fetch(URI, {
@@ -24,27 +24,28 @@ function getImages(queryStr, pageSize, numImages){
     })
     //pass json to image extractor
     .then(packageImg)
+    
 }
 
 // loop json array, extract small images, append attribution data
-function packageImg([jsonData, numImages]){
+function packageImg([jsonData, numImages]) {
     //a given query will return the same images from the api
     //randomizing the images taken will allow for a better user experience accross
     //games with the same query 
-    function getRandomIntInclusive(min=0, max=jsonData.results.length-1) {
+    function getRandomIntInclusive(min = 0, max = jsonData.results.length - 1) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
-      }
-    
+    }
+
     //non-repeating number logic
-    let rand = []; 
-    while (rand.length < numImages){
+    let rand = [];
+    while (rand.length < numImages) {
         let num = getRandomIntInclusive();
         // ! reverses logic
         // .includes would return true if found
         // so if num not found add it else try again
-        if (!rand.includes(num)){
+        if (!rand.includes(num)) {
             rand.push(num);
         }
     }
