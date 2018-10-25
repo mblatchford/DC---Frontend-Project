@@ -1,12 +1,12 @@
 // query will be hardcoded to button intialization
-let queryStr = "animals";
+// let queryStr = "animals";
 // durationEnd allows for searching longer or shorter effects
 // may not be necessary in final build, but can be dynamically created
 let durationEnd = 3;
 // pageSize should increase as level size increases so not to pull
 // down unnecessary amounts of data. Should leave enough overhead
 // for some randomization though
-let pageSize = 50;
+// let pageSize = 50;
 // numsounds is dynamically passed to function at init as more tiles are created
 let numSounds = 8;
 

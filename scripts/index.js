@@ -5,14 +5,14 @@
 // guess count is reset after 2 guesses.
 
 function button() {
-  // getImages(queryStr, pageSize, numImages);
-  getSounds(queryStr,durationEnd,pageSize,numSounds);
+  getImages(queryStr, pageSize, numImages);
+  // getSounds(queryStr, durationEnd, pageSize, numSounds);
 }
 
 function gameStart(dataObj) {
-  const arrayOfImages = dataObj;
+  const arrayOfImgsSnds = dataObj;
   // container for images is appended and array of images is concatenated to double up the images.
-  let gameBoard = arrayOfImages.concat(arrayOfImages);
+  let gameBoard = arrayOfImgsSnds.concat(arrayOfImgsSnds);
 
   // function to sort 8(16) cards randomly.
   gameBoard.sort(() => 0.5 - Math.random());
@@ -35,19 +35,25 @@ function gameStart(dataObj) {
     tile.dataset.attr_name = item.attr_name;
     tile.dataset.attr_url = item.attr_url;
     tile.dataset.name = item.src;
+    tile.dataset.soundFile = item.soundFile;
 
-    //   front card element created
-    const frontOf = document.createElement("div");
-    frontOf.classList.add("front");
+    // sound anchor created
+    const tileSound = document.createElement("audio");
+    tileSound.setAttribute = `src(${item.soundFile})`;
 
-    // back card element created
-    const backOf = document.createElement("div");
-    backOf.classList.add("back");
-    backOf.style.backgroundImage = `url(${item.src})`;
+    //   back of card element created
+    const tileBack = document.createElement("div");
+    tileBack.classList.add("front");
+
+    // face of card element created
+    const tileFace = document.createElement("div");
+    tileFace.classList.add("back");
+    tileFace.style.backgroundImage = `url(${item.src})`;
 
     tileContainer.appendChild(tile);
-    tile.appendChild(frontOf);
-    tile.appendChild(backOf);
+    tile.appendChild(tileBack);
+    tile.appendChild(tileFace);
+    tile.appendChild(tileSound);
   });
 
   const paired = () => {
@@ -90,10 +96,12 @@ function gameStart(dataObj) {
         firstClick = selected.parentNode.dataset.name;
         //   console.log(firstClick);
         selected.parentNode.classList.add("clicked");
+        tileSound.play();
       } else {
         secondClick = selected.parentNode.dataset.name;
         //   console.log(secondClick);
         selected.parentNode.classList.add("clicked");
+        tileSound.play();
       }
       // as long as the first and second clicks are not empty
       // and the first click matches the second click
