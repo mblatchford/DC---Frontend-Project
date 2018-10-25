@@ -2,13 +2,13 @@
 let queryStr = "animals";
 // durationEnd allows for searching longer or shorter effects
 // may not be necessary in final build, but can be dynamically created
-// let durationEnd = 3;
+let durationEnd = 3;
 // pageSize should increase as level size increases so not to pull
 // down unnecessary amounts of data. Should leave enough overhead
 // for some randomization though
-// let pageSize = 10;
+let pageSize = 50;
 // numsounds is dynamically passed to function at init as more tiles are created
-// let numSounds = 8;
+let numSounds = 8;
 
 function getSounds(queryStr,durationEnd,pageSize,numSounds){
     // fetch sounds from api dynamically based on query 
@@ -38,10 +38,20 @@ function packageSoundID([jsonData, numSounds]){
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
       }
+
+     //non-repeating number logic
+     let rand = []; 
+     while (rand.length < numSounds){
+         let num = getRandomIntInclusive();
+         // ! reverses logic
+         // .includes would return true if found
+         // so if num not found add it else try again
+         if (!rand.includes(num)){
+             rand.push(num);
+         }
+     }  
     let soundsArray = [];
-    for(let i = 0; i < numSounds; i++ ){
-        // new randomized index with each loop
-        let randomized = getRandomIntInclusive();
+    rand.forEach(index => {
         // keep reintializing a new soundObj in the loop
         // else if outside, just accesing memory pointers to one object
         let soundObj = {
@@ -50,12 +60,12 @@ function packageSoundID([jsonData, numSounds]){
             attr_url: "",
             soundFile: ""
         }
-        soundObj.id         =`${jsonData.results[randomized].id}`;
-        soundObj.attr_name  =`${jsonData.results[randomized].username}`;
-        soundObj.attr_url   =`${jsonData.results[randomized].url}`;
-        soundObj.soundFile  =`${jsonData.results[randomized].previews["preview-hq-mp3"]}`;
+        soundObj.id         =`${jsonData.results[index].id}`;
+        soundObj.attr_name  =`${jsonData.results[index].username}`;
+        soundObj.attr_url   =`${jsonData.results[index].url}`;
+        soundObj.soundFile  =`${jsonData.results[index].previews["preview-hq-mp3"]}`;
         soundsArray.push(soundObj);
-    }
+    });
     //uncomment the below to get a handle on what is being passed back to the promise chain
     console.table(soundsArray);
     return soundsArray;
