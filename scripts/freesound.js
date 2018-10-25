@@ -16,15 +16,15 @@ function getSounds(queryStr, durationEnd, pageSize, numSounds) {
     // include parameter of pageSize for num results per fetch
     // abstracted accessKey into seperate file
     const URI = `https://freesound.org/apiv2/search/text/?query=${queryStr}&page_size=${pageSize}&filter=duration:[1 TO ${durationEnd}]&fields=name,url,id,username,previews&token=${accessKeyFreesound}`;
-
-    fetch(URI)
-        //stringified data needs to be converted to json for use
-        .then(str => {
-            return Promise.all([str.json(), numSounds]);
-        })
-        //pass json to sound extractor
-        .then(packageSoundID)
-    // .then(pass to next function)
+   
+    return fetch(URI)
+    //stringified data needs to be converted to json for use
+    .then(str => {
+        return Promise.all([str.json(), numSounds]);
+    })
+    //pass json to sound extractor
+    .then(packageSoundID)
+    // .then(gameStart)
 }
 
 // loop json array, extractd small sounds, append attribution data
@@ -56,17 +56,17 @@ function packageSoundID([jsonData, numSounds]) {
         // else if outside, just accesing memory pointers to one object
         let soundObj = {
             id: "",
-            attr_name: "",
-            attr_url: "",
+            attrSnd_name: "",
+            attrSnd_url: "",
             soundFile: ""
         }
-        soundObj.id = `${jsonData.results[index].id}`;
-        soundObj.attr_name = `${jsonData.results[index].username}`;
-        soundObj.attr_url = `${jsonData.results[index].url}`;
-        soundObj.soundFile = `${jsonData.results[index].previews["preview-hq-mp3"]}`;
+        soundObj.id             =`${jsonData.results[index].id}`;
+        soundObj.attrSnd_name  =`${jsonData.results[index].username}`;
+        soundObj.attrSnd_url   =`${jsonData.results[index].url}`;
+        soundObj.soundFile      =`${jsonData.results[index].previews["preview-hq-mp3"]}`;
         soundsArray.push(soundObj);
     });
     //uncomment the below to get a handle on what is being passed back to the promise chain
-    console.table(soundsArray);
+    //console.table(soundsArray);
     return soundsArray;
 }
