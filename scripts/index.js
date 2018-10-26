@@ -7,24 +7,24 @@
 function button() {
 
   // the promise.all will wait to pass its data to the anonymous function until both getImages and getSounds are resolved 
-  Promise.all([getImages(queryStr, pageSize, numImages), getSounds(queryStr, durationEnd, pageSize, numSounds)]).then(function(data){
-  //dataObj will hold the array of imgs and the array of snds in one combined array
-  let dataObj = [];
-  // the promise.all passed an array of two values [images,sounds]
-  // since the lengths are equal, just use the first array as our loop argument
-  // when using forEach instead of a std for loop, the array index is handled behind the scenes
-  // by including the 'i' as a parameter I can make that index available
-  data[0].forEach((element, i) => {
-    // with no conflicting keys across imgs and sounds, temp object will add all key/value pairs 
-    // in a single object, (the empty object provided in the first argument), from the images and from the sounds object
-    let temp = Object.assign({}, element,data[1][i]);
-    // push each unified img/snd object into dataObj array
-    dataObj.push(temp);
-  });
-// return the completed dataObj array to promise.all which will pass it to the next link in the chain
-return dataObj;
-})
-.then(gameStart)
+  Promise.all([getImages(queryStr, pageSize, numImages), getSounds(queryStr, durationEnd, pageSize, numSounds)]).then(function (data) {
+    //dataObj will hold the array of imgs and the array of snds in one combined array
+    let dataObj = [];
+    // the promise.all passed an array of two values [images,sounds]
+    // since the lengths are equal, just use the first array as our loop argument
+    // when using forEach instead of a std for loop, the array index is handled behind the scenes
+    // by including the 'i' as a parameter I can make that index available
+    data[0].forEach((element, i) => {
+      // with no conflicting keys across imgs and sounds, temp object will add all key/value pairs 
+      // in a single object, (the empty object provided in the first argument), from the images and from the sounds object
+      let temp = Object.assign({}, element, data[1][i]);
+      // push each unified img/snd object into dataObj array
+      dataObj.push(temp);
+    });
+    // return the completed dataObj array to promise.all which will pass it to the next link in the chain
+    return dataObj;
+  })
+    .then(gameStart)
 }
 
 function gameStart(dataObj) {
@@ -55,7 +55,7 @@ function gameStart(dataObj) {
     tile.dataset.attrImg_url = item.attrImg_url;
     tile.dataset.name = item.imgSrc;
     tile.dataset.soundFile = item.soundFile;
-    
+
     // // sound anchor created
     const tileSound = document.createElement("audio");
     tileSound.src = item.soundFile;
@@ -75,9 +75,9 @@ function gameStart(dataObj) {
     tile.appendChild(tileBack);
     tile.appendChild(tileFace);
     tile.appendChild(tileSound);
-    
 
-  // an event listener for the game board
+
+    // an event listener for the game board
     tile.addEventListener("click", function (e) {
       // console.log('i clicked');
       let selected = e.target;
@@ -153,11 +153,6 @@ function gameStart(dataObj) {
 
 }
 
-function gameSuccess(){
-  const modalElement = document.querySelector('[data-modal]');
-  modalElement.classList.remove('modal-hidden');
-}
-
 function startTimer(duration, display) {
   let timer = duration, minutes, seconds;
   setInterval(function () {
@@ -178,11 +173,15 @@ function startTimer(duration, display) {
   }, 1000);
 }
 
-window.onload = function () {
-  let minutes = 60 * .05,
-      display = document.querySelector('.timer');
-  startTimer(minutes, display);
-};
+//Modal Logic for Game Start Screen
+const modalElement = document.querySelector('[data-modal]');
+
+//click listener to toggle modal off
+modalElement.addEventListener('click', () => {
+  modalElement.classList.toggle('modal-hidden')
+});
+
+
 
 
 button();

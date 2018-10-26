@@ -17,6 +17,11 @@ body {
 
 /*base site made around  360px */
 
+body{
+  background-image: url(/stylesheets/just-waves.png);
+  background-repeat: repeat;
+}
+
 /* HEADER STYLES  */
 .main-header {
   display: flex;
@@ -33,7 +38,6 @@ body {
 
 /* styling for game board area */
 .game-box {
-  outline: 1px solid red;
   display: flex;
   height: 95%;
   width: 100%;
@@ -42,12 +46,6 @@ body {
 
 /* styling for the over game board */
 .boardy {
-  /* display: flex;
-  flex-wrap: wrap;
-  max-width: 960px;
-  margin: 0 auto;
-  justify-content: center; */
-  outline: 1px solid pink;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -107,46 +105,28 @@ body {
 
 }
 
-.modal {
-  /* 
-      1. cover the whole page
-          - yep, overlap everything
-      2. put a see-through grey color on top of the page
-      3. center the contents
-  */
-
-  /* 
-  To make things overlap, use postion: absolute.
-  This lets you set coordinates for where exactly
-  you want to place an element.
-   */
+.modal  {
   position: absolute;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
-   /* border: 5px solid red; */
-
-  background-color: rgba(0, 0, 0, 0.7);
-  /* background-color: rgba(0, 0, 0, 1.0);
-  opacity: 0.7; */
-
+  margin: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(0, 0, 0, .8);
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 200ms ease-in-out;
+  border-radius: 10px;
 }
 
-.modal-hidden {
-  /* visibility: hidden; */
+.modal-hidden  {
   display: none;
+  transform: scale(0.00001);
 }
 
-/* ================================== */
-/* timer */
-.timer {
-  font-family: fantasy;
-}
-/* ================================== */
+
+
 
 /* ================================== */
 /* next media width styling */
