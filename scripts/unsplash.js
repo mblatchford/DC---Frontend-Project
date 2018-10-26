@@ -1,11 +1,11 @@
 // query will be hardcoded to button intialization
-let queryStr = "dogs";
+// let queryStr = "dogs";
 // pageSize should increase as level size increases so not to pull
 // down unnecessary amounts of data. Should leave enough overhead
 // for some randomization though
-let pageSize = 50;
+// let pageSize = 50;
 // numImages is dynamically passed to function at init as more tiles are created
-let numImages = 8;
+// let numImages = 8;
 
 function getImages(queryStr, pageSize, numImages) {
     // fetch photos from api dynamically based on query 
