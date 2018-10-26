@@ -9,19 +9,19 @@ const catElement = document.querySelector('[data-cats]');
 spaceElement.addEventListener('click', () => {
   queryStr = 'space';
   pageSize = 100;
-  numImages = 2;
-  numSounds = 2;
+  numImages = 8;
+  numSounds = 8;
   durationEnd = 4;
-  button(queryStr, pageSize,  numImages, numSounds, durationEnd);
+  button(queryStr, pageSize, numImages, numSounds, durationEnd);
 });
 
 dogElement.addEventListener('click', () => {
   queryStr = 'dog';
   pageSize = 100;
-  numImages = 2;
-  numSounds = 2;
+  numImages = 16;
+  numSounds = 16;
   durationEnd = 4;
-  button(queryStr, pageSize,  numImages, numSounds, durationEnd);
+  button(queryStr, pageSize, numImages, numSounds, durationEnd);
 });
 
 catElement.addEventListener('click', () => {
@@ -30,5 +30,5 @@ catElement.addEventListener('click', () => {
   numImages = 2;
   numSounds = 2;
   durationEnd = 4;
-  button(queryStr, pageSize,  numImages, numSounds, durationEnd);
+  button(queryStr, pageSize, numImages, numSounds, durationEnd);
 });
