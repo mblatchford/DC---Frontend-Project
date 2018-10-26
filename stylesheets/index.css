@@ -124,7 +124,10 @@ body{
   display: none;
   transform: scale(0.00001);
 }
+.modalText {
+  color: white;
 
+}
 
 
 

@@ -2,15 +2,15 @@
 // let queryStr = "animals";
 // durationEnd allows for searching longer or shorter effects
 // may not be necessary in final build, but can be dynamically created
-let durationEnd = 3;
+//let durationEnd = 3;
 // pageSize should increase as level size increases so not to pull
 // down unnecessary amounts of data. Should leave enough overhead
 // for some randomization though
 // let pageSize = 50;
 // numsounds is dynamically passed to function at init as more tiles are created
- let numSounds = 2;
+// let numSounds = 2;
 
-function getSounds(queryStr, durationEnd, pageSize, numSounds) {
+function getSounds(queryStr, pageSize, numSounds, durationEnd) {
     // fetch sounds from api dynamically based on query 
     // include parameter for duration match in secondsgit
     // include parameter of pageSize for num results per fetch

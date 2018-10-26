@@ -5,9 +5,8 @@
 // guess count is reset after 2 guesses.
 
 function button() {
-
   // the promise.all will wait to pass its data to the anonymous function until both getImages and getSounds are resolved 
-  Promise.all([getImages(queryStr, pageSize, numImages), getSounds(queryStr, durationEnd, pageSize, numSounds)]).then(function (data) {
+  Promise.all([getImages(queryStr, pageSize, numImages), getSounds(queryStr, pageSize, numSounds, durationEnd)]).then(function (data) {
     //dataObj will hold the array of imgs and the array of snds in one combined array
     let dataObj = [];
     // the promise.all passed an array of two values [images,sounds]
@@ -121,7 +120,8 @@ function gameStart(dataObj) {
             }else{ 
               setTimeout(paired, wait);
               setTimeout(resetClicks, wait);
-              gameSuccess();
+              let win = 'win';
+              gameEnd(win);
             }
             // not a match reset tiles
           } else {
@@ -180,12 +180,59 @@ const modalElement = document.querySelector('[data-modal]');
 //click listener to toggle modal off
 modalElement.addEventListener('click', () => {
   modalElement.classList.toggle('modal-hidden')
-  let minutes = 60 * .05;
+  let minutes = 60 * 1;
   let display = document.querySelector('.timer');
    startTimer(minutes, display); 
 });
 
+const modalTextElement = document.querySelector('[data-modalText]');
 
+function gameEnd(ending){
+  if (ending === 'win'){
+    modalTextElement.textContent = "Hey you Won!!!";
+    modalElement.classList.toggle('modal-hidden')
 
+  }else{
 
-button();
+    modalElement.classList.toggle('modal-hidden')
+
+  }
+  
+
+}
+
+// ===========================================
+//  game intializing buttons
+// ===========================================
+const spaceElement = document.querySelector('[data-space]');
+const dogElement = document.querySelector('[data-dogs]');
+const catElement = document.querySelector('[data-cats]');
+
+spaceElement.addEventListener('click', () => {
+  queryStr = 'space';
+  pageSize = 100;
+  numImages = 2;
+  numSounds = 2;
+  durationEnd = 4;
+  button(queryStr, pageSize,  numImages, numSounds, durationEnd);
+});
+
+dogElement.addEventListener('click', () => {
+  queryStr = 'dog';
+  pageSize = 100;
+  numImages = 2;
+  numSounds = 2;
+  durationEnd = 4;
+  button(queryStr, pageSize,  numImages, numSounds, durationEnd);
+});
+
+catElement.addEventListener('click', () => {
+  queryStr = 'cat';
+  pageSize = 100;
+  numImages = 2;
+  numSounds = 2;
+  durationEnd = 4;
+  button(queryStr, pageSize,  numImages, numSounds, durationEnd);
+});
+
+// button();
