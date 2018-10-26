@@ -28,6 +28,7 @@ return dataObj;
 }
 
 function gameStart(dataObj) {
+  let numMatches = 0;
   const arrayOfImgsSnds = dataObj;
   // container for images is appended and array of images is concatenated to double up the images.
   let gameBoard = arrayOfImgsSnds.concat(arrayOfImgsSnds);
@@ -109,10 +110,20 @@ function gameStart(dataObj) {
         // the paired function is called.
         if (firstClick !== "" && secondClick !== "") {
           if (firstClick === secondClick) {
-            //   added a delay between resetting clicks and
-            // matched pairs disappearing.
-            setTimeout(paired, wait);
-            setTimeout(resetClicks, wait);
+            // if more than one possible match is left
+            if (numMatches < numImages-1){
+              //   added a delay between resetting clicks and
+              // matched pairs disappearing.
+              setTimeout(paired, wait);
+              setTimeout(resetClicks, wait);
+              numMatches++;
+              // if only one match is left, pair then call modal
+            }else{ 
+              setTimeout(paired, wait);
+              setTimeout(resetClicks, wait);
+              gameSuccess();
+            }
+            // not a match reset tiles
           } else {
             setTimeout(resetClicks, wait);
           }
@@ -141,6 +152,37 @@ function gameStart(dataObj) {
   };
 
 }
+
+function gameSuccess(){
+  const modalElement = document.querySelector('[data-modal]');
+  modalElement.classList.remove('modal-hidden');
+}
+
+function startTimer(duration, display) {
+  let timer = duration, minutes, seconds;
+  setInterval(function () {
+      minutes = parseInt(timer / 60, 10)
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      display.textContent = minutes + ":" + seconds;
+      // at timer end
+      if (--timer < 0) { 
+        display.textContent = "00" + ":" + "00";
+        // gameSuccess();
+
+
+      }
+  }, 1000);
+}
+
+window.onload = function () {
+  let minutes = 60 * .05,
+      display = document.querySelector('.timer');
+  startTimer(minutes, display);
+};
 
 
 button();

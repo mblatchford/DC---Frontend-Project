@@ -8,7 +8,7 @@ let durationEnd = 3;
 // for some randomization though
 // let pageSize = 50;
 // numsounds is dynamically passed to function at init as more tiles are created
- let numSounds = 8;
+ let numSounds = 4;
 
 function getSounds(queryStr, durationEnd, pageSize, numSounds) {
     // fetch sounds from api dynamically based on query 
