@@ -11,9 +11,9 @@ function button() {
     getImages(queryStr, pageSize, numImages),
     getSounds(queryStr, durationEnd, pageSize, numSounds)
   ])
-    .then(function(data) {
+    .then(data => {
       //dataObj will hold the array of imgs and the array of snds in one combined array
-      let dataObj = [];
+      const dataObj = [];
       // the promise.all passed an array of two values [images,sounds]
       // since the lengths are equal, just use the first array as our loop argument
       // when using forEach instead of a std for loop, the array index is handled behind the scenes
@@ -22,7 +22,7 @@ function button() {
         // with no conflicting keys across imgs and sounds, temp object will add all key/value pairs
         // in a single object, (the empty object provided in the first argument), from the images and
         // from the sounds object
-        let temp = Object.assign({}, element, data[1][i]);
+        const temp = Object.assign({}, element, data[1][i]);
         // push each unified img/snd object into dataObj array
         dataObj.push(temp);
       });
@@ -48,9 +48,14 @@ function gameStart(dataObj) {
   let pairedCount = 0;
 
   const board = document.querySelector("[data-board]");
+
+  board.innerHTML = "";
+
   const tileContainer = document.createElement("section");
   tileContainer.setAttribute("class", "boardy");
+  console.log(tileContainer.className);
   board.appendChild(tileContainer);
+  console.log(tileContainer.className);
 
   // loops through array of images to append to div
   gameBoard.forEach(item => {
@@ -65,7 +70,6 @@ function gameStart(dataObj) {
     // // sound anchor created
     const tileSound = document.createElement("audio");
     tileSound.src = item.soundFile;
-    // tileSound.type = "audio/mpeg";
 
     //   back of tile element created
     const tileBack = document.createElement("div");
@@ -134,8 +138,7 @@ function gameStart(dataObj) {
     // after all pairs have been matched, the page reloads to reset the game.
     pairedCount++;
     if (pairedCount === dataObj.length) {
-      tileContainer.classList.remove("game-box");
-      tileContainer.classList.remove("boardy");
+      board.innerHTML = "";
       button();
     }
   };
