@@ -17,6 +17,11 @@ body {
 
 /*base site made around  360px */
 
+body{
+  background-image: url(/stylesheets/just-waves.png);
+  background-repeat: repeat;
+}
+
 /* HEADER STYLES  */
 .main-header {
   display: flex;
@@ -33,7 +38,6 @@ body {
 
 /* styling for game board area */
 .game-box {
-  outline: 1px solid red;
   display: flex;
   height: 95%;
   width: 100%;
@@ -42,12 +46,6 @@ body {
 
 /* styling for the over game board */
 .boardy {
-  /* display: flex;
-  flex-wrap: wrap;
-  max-width: 960px;
-  margin: 0 auto;
-  justify-content: center; */
-  outline: 1px solid pink;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -106,6 +104,28 @@ body {
   background: white !important;
 
 }
+
+.modal  {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(0, 0, 0, .8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 200ms ease-in-out;
+  border-radius: 10px;
+}
+
+.modal-hidden  {
+  display: none;
+  transform: scale(0.00001);
+}
+
+
 
 
 /* ================================== */
