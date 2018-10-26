@@ -151,8 +151,3 @@ const modalElement = document.querySelector('[data-modal]');
 modalElement.addEventListener('click', () => {
   modalElement.classList.toggle('modal-hidden')
 });
-
-
-
-
-button();
