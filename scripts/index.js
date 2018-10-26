@@ -129,7 +129,7 @@ function gameStart(dataObj) {
           }
         }
       }
-    });
+    }); 
   });
 
   const paired = () => {
@@ -155,22 +155,23 @@ function gameStart(dataObj) {
 
 function startTimer(duration, display) {
   let timer = duration, minutes, seconds;
-  setInterval(function () {
-      minutes = parseInt(timer / 60, 10)
-      seconds = parseInt(timer % 60, 10);
+  // assigning setInterval to a variable means I can use the variable as the intervalID
+  // clearInterval cancels intervals by ID
+  let interval = setInterval(function () {
+                    minutes = parseInt(timer / 60, 10)
+                    seconds = parseInt(timer % 60, 10);
 
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
 
-      display.textContent = minutes + ":" + seconds;
-      // at timer end
-      if (--timer < 0) { 
-        display.textContent = "00" + ":" + "00";
-        // gameSuccess();
-
-
-      }
-  }, 1000);
+                    display.textContent = minutes + ":" + seconds;
+                    // at timer end
+                    if (--timer < 0) { 
+                      clearInterval(interval);
+                      // display.textContent = "00" + ":" + "00";
+                      modalElement.classList.toggle('modal-hidden')
+                    }
+                }, 1000);
 }
 
 //Modal Logic for Game Start Screen
@@ -179,6 +180,9 @@ const modalElement = document.querySelector('[data-modal]');
 //click listener to toggle modal off
 modalElement.addEventListener('click', () => {
   modalElement.classList.toggle('modal-hidden')
+  let minutes = 60 * .05;
+  let display = document.querySelector('.timer');
+   startTimer(minutes, display); 
 });
 
 

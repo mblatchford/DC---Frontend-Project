@@ -5,7 +5,7 @@ let queryStr = "dog";
 // for some randomization though
 let pageSize = 100;
 // numImages is dynamically passed to function at init as more tiles are created
-let numImages = 4;
+let numImages = 2;
 
 function getImages(queryStr, pageSize, numImages) {
     // fetch photos from api dynamically based on query 
