@@ -12,18 +12,18 @@ function getImages(queryStr, pageSize, numImages) {
     // abstracted accessKey into seperate file
     const URI = `https://api.unsplash.com/search/photos/?query=${queryStr}&orientation=squarish&page=1&per_page=${pageSize}&client_id=${accessKeyUnsplash}`;
     return fetch(URI, {
-    headers: {
-        'Content-Type': 'application/json',
-        // api reccomended this addition
-        'Accept-Version' : 'v1'
-      }
+        headers: {
+            'Content-Type': 'application/json',
+            // api reccomended this addition
+            'Accept-Version': 'v1'
+        }
     })
-    //stringified data needs to be converted to json for use
-    .then(str => {
-        return Promise.all([str.json(), numImages]);
-    })
-    //pass json to image extractor
-    .then(packageImg)
+        //stringified data needs to be converted to json for use
+        .then(str => {
+            return Promise.all([str.json(), numImages]);
+        })
+        //pass json to image extractor
+        .then(packageImg)
 }
 
 // loop json array, extract small images, append attribution data
@@ -48,7 +48,7 @@ function packageImg([jsonData, numImages]) {
             rand.push(num);
         }
     }
-   // console.log(`rand[] ${rand}`);
+    // console.log(`rand[] ${rand}`);
     let imgArray = [];
     rand.forEach(index => {
         // keep reintializing a new imgObj in the loop
@@ -58,11 +58,11 @@ function packageImg([jsonData, numImages]) {
             attrImg_name: "",
             attrImg_url: ""
         };
-       imgObj.imgSrc       = `${jsonData.results[index].urls.small}`;
-       imgObj.attrImg_name = `${jsonData.results[index].user.name}`;
-       imgObj.attrImg_url  = `${jsonData.results[index].links.html}`;
-       imgArray.push(imgObj);
-    }); 
+        imgObj.imgSrc = `${jsonData.results[index].urls.small}`;
+        imgObj.attrImg_name = `${jsonData.results[index].user.name}`;
+        imgObj.attrImg_url = `${jsonData.results[index].links.html}`;
+        imgArray.push(imgObj);
+    });
 
     //uncomment the below to get a handle on what is being passed back to the promise chain
     //console.table(imgArray);
