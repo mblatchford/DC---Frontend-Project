@@ -2,7 +2,7 @@
 // let queryStr = "animals";
 // durationEnd allows for searching longer or shorter effects
 // may not be necessary in final build, but can be dynamically created
-let durationEnd = 3;
+//let durationEnd = 3;
 // pageSize should increase as level size increases so not to pull
 // down unnecessary amounts of data. Should leave enough overhead
 // for some randomization though

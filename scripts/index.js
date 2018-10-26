@@ -34,6 +34,7 @@ function button() {
 }
 
 function gameStart(dataObj) {
+  let numMatches = 0;
   const arrayOfImgsSnds = dataObj;
   // container for images is appended and array of images is concatenated to double up the images.
   const gameBoard = arrayOfImgsSnds.concat(arrayOfImgsSnds);
@@ -85,8 +86,10 @@ function gameStart(dataObj) {
     tile.appendChild(tileFace);
     tile.appendChild(tileSound);
 
+
     // an event listener for the game board
     tile.addEventListener("click", function(e) {
+
       // console.log('i clicked');
       let selected = e.target;
       //   only allow the div tiles to be selected and
@@ -118,16 +121,35 @@ function gameStart(dataObj) {
         // the paired function is called.
         if (firstClick !== "" && secondClick !== "") {
           if (firstClick === secondClick) {
-            //   added a delay between resetting clicks and
-            // matched pairs disappearing.
-            setTimeout(paired, wait);
-            setTimeout(resetClicks, wait);
+            // if more than one possible match is left
+            if (numMatches < numImages-1){
+              //   added a delay between resetting clicks and
+              // matched pairs disappearing.
+              setTimeout(paired, wait);
+              setTimeout(resetClicks, wait);
+              numMatches++;
+              // if only one match is left, pair then call modal
+            }else{ 
+              setTimeout(paired, wait);
+              setTimeout(resetClicks, wait);
+              setTimeout(deleteBoard, wait);
+
+              function deleteBoard(){
+                board.innerHTML= "";
+              }
+              setTimeout(reinit, wait);
+              
+              }function reinit(){
+                let win = 'win';
+                gameEnd(win);
+              }
+            // not a match reset tiles
           } else {
             setTimeout(resetClicks, wait);
           }
         }
       }
-    });
+    }); 
   });
   // as each tile is clicked, the .paired class is added.
   const paired = () => {
@@ -156,4 +178,50 @@ function gameStart(dataObj) {
   };
 }
 
-button();
+function startTimer(duration, display) {
+  let timer = duration, minutes, seconds;
+  // assigning setInterval to a variable means I can use the variable as the intervalID
+  // clearInterval cancels intervals by ID
+  let interval = setInterval(function () {
+                    minutes = parseInt(timer / 60, 10)
+                    seconds = parseInt(timer % 60, 10);
+
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                    display.textContent = minutes + ":" + seconds;
+                    // at timer end
+                    if (--timer < 0) { 
+                      clearInterval(interval);
+                      // display.textContent = "00" + ":" + "00";
+                      modalElement.classList.toggle('modal-hidden')
+                    }
+                }, 1000);
+}
+
+//Modal Logic for Game Start Screen
+const modalElement = document.querySelector('[data-modal]');
+
+//click listener to toggle modal off
+modalElement.addEventListener('click', () => {
+  modalElement.classList.toggle('modal-hidden')
+  let minutes = 60 * 1;
+  let display = document.querySelector('.timer');
+   startTimer(minutes, display); 
+});
+
+const modalTextElement = document.querySelector('[data-modalText]');
+
+function gameEnd(ending){
+  if (ending === 'win'){
+    modalTextElement.textContent = "Hey you Won!!!";
+    modalElement.classList.toggle('modal-hidden')
+
+  }else{
+
+    modalElement.classList.toggle('modal-hidden')
+
+  }
+  
+
+}
