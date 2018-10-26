@@ -142,6 +142,8 @@ function gameStart(dataObj) {
 
 }
 
+
+
 //Modal Logic for Game Start Screen
 const modalElement = document.querySelector('[data-modal]');
 
