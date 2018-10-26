@@ -17,6 +17,11 @@ body {
 
 /*base site made around  360px */
 
+body{
+  background-image: url(/stylesheets/just-waves.png);
+  background-repeat: repeat;
+}
+
 /* HEADER STYLES  */
 .main-header {
   display: flex;
