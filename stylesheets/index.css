@@ -101,7 +101,7 @@ body {
 }
 
 .paired .front {
-  background: white !important;
+  visibility: hidden;
 }
 
 /* ================================== */

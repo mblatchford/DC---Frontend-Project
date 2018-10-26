@@ -135,7 +135,7 @@ function gameStart(dataObj) {
     [...chosen].forEach(tile => {
       tile.classList.add("paired");
     });
-    // after all pairs have been matched, the page reloads to reset the game.
+    // after all pairs have been matched, the page clears to reset the game.
     pairedCount++;
     if (pairedCount === dataObj.length) {
       board.innerHTML = "";
