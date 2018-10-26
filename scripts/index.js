@@ -1,11 +1,12 @@
-// a memory game that pulls images/sounds from an API. the user will match
-// the face of the tiles. 8 tiles are randomized and displayed. only 2 tiles
-// may be selected at a time. after 2 tiles are selected, tiles flip back
-// unless the tiles are correct, in which case the tiles stay visible.
-// guess count is reset after 2 guesses.
+// a memory game that pulls images/sounds from the freesound/unsplash APIs.
+// the user will match the face of the tiles. 8 tiles are randomized and displayed.
+// only 2 tiles may be selected at a time. after 2 tiles are selected,
+// tiles flip back unless the tiles are correct, in which case the tiles
+// stay visible. guess count is reset after 2 guesses.
 
 function button() {
-  // the promise.all will wait to pass its data to the anonymous function until both getImages and getSounds are resolved
+  // the promise.all will wait to pass its data to the anonymous function until both getImages
+  // and getSounds are resolved.
   Promise.all([
     getImages(queryStr, pageSize, numImages),
     getSounds(queryStr, durationEnd, pageSize, numSounds)
@@ -19,12 +20,14 @@ function button() {
       // by including the 'i' as a parameter I can make that index available
       data[0].forEach((element, i) => {
         // with no conflicting keys across imgs and sounds, temp object will add all key/value pairs
-        // in a single object, (the empty object provided in the first argument), from the images and from the sounds object
+        // in a single object, (the empty object provided in the first argument), from the images and
+        // from the sounds object
         let temp = Object.assign({}, element, data[1][i]);
         // push each unified img/snd object into dataObj array
         dataObj.push(temp);
       });
-      // return the completed dataObj array to promise.all which will pass it to the next link in the chain
+      // return the completed dataObj array to promise.all which will pass it to the next
+      // link in the chain.
       return dataObj;
     })
     .then(gameStart);
@@ -131,7 +134,9 @@ function gameStart(dataObj) {
     // after all pairs have been matched, the page reloads to reset the game.
     pairedCount++;
     if (pairedCount === dataObj.length) {
-      location.reload();
+      tileContainer.classList.remove("game-box");
+      tileContainer.classList.remove("boardy");
+      button();
     }
   };
 
