@@ -8,7 +8,8 @@ function gameEnd(end){
     }else if(end === "loss"){
         modalTextElement.textContent = "You're a loser!"; 
         modalElement.classList.toggle('modal-hidden');
-
+        let eraseBoard = document.querySelector('[data-board]');
+        eraseBoard.remove();
     }
 
 }

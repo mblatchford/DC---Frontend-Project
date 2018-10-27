@@ -10,7 +10,7 @@ function startTimer(duration, display) {
                       minutes = minutes < 10 ? "0" + minutes : minutes;
                       seconds = seconds < 10 ? "0" + seconds : seconds;
   
-                      display.textContent = minutes + ":" + seconds;
+                      display.textContent = "Time Remaining: " + minutes + ":" + seconds;
                       // at timer end, game ends
                       if (--timer < 0 ){ 
                         // stop interval from repeating
