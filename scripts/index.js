@@ -24,6 +24,7 @@ function button() {
     return dataObj;
   })
     .then(gameStart)
+    .then(timer)
 }
 
 function gameStart(dataObj) {

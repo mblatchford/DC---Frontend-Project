@@ -11,22 +11,22 @@ function startTimer(duration, display) {
                       seconds = seconds < 10 ? "0" + seconds : seconds;
   
                       display.textContent = minutes + ":" + seconds;
-                      // at timer end
+                      // at timer end, game ends
                       if (--timer < 0 ){ 
                         // stop interval from repeating
                         clearInterval(interval);
+                        // gameEnd
+                        let loss = 'loss';
+                        gameEnd(loss);
                       }
         
                   }, 1000);
   }
   
 
-//  timer begins on window load
-//  does not currently link to any game functions
-//  will need to be tied to future buttons instead of on window load
-
-window.onload = function () {
-    let minutes = 60 * .5,
+//  timer includes default if no parameter is passed
+function timer (time = .5) {
+    let minutes = 60 * time,
     display = document.querySelector('.timer');
     startTimer(minutes, display);
 };
