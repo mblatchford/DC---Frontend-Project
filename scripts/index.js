@@ -151,4 +151,4 @@ function gameStart(dataObj) {
 
 //Modal element for Game Start Screen
 const modalElement = document.querySelector('[data-modal]');
-
+const modalTextElement = document.querySelector('[data-modalText]');
