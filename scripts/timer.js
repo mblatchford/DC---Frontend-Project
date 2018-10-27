@@ -1,3 +1,5 @@
+// by making this global I can access it on gameEnd === win and stop timer
+// haven't figured out a way to kill it otherwise
 let interval = "";
 
 function startTimer(duration, display) {
