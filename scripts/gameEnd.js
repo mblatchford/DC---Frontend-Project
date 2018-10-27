@@ -3,13 +3,14 @@ function gameEnd(end){
         //write new message, call modal, delete game
         modalTextElement.textContent = "You're a winner!"; 
         modalElement.classList.toggle('modal-hidden');
-
+        // let eraseBoard = document.querySelector('[data-board]');
+        // eraseBoard.remove();
     
     }else if(end === "loss"){
         modalTextElement.textContent = "You're a loser!"; 
         modalElement.classList.toggle('modal-hidden');
-        let eraseBoard = document.querySelector('[data-board]');
-        eraseBoard.remove();
+        // let eraseBoard = document.querySelector('[data-board]');
+        // eraseBoard.remove();
     }
 
 }

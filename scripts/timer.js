@@ -1,9 +1,10 @@
+let interval = "";
 
 function startTimer(duration, display) {
     let timer = duration, minutes, seconds;
     // assigning setInterval to a variable means I can use the variable as the intervalID
     // clearInterval cancels intervals by ID
-    let interval = setInterval(function () {
+    interval = setInterval(function () {
                       minutes = parseInt(timer / 60, 10)
                       seconds = parseInt(timer % 60, 10);
   
@@ -25,7 +26,7 @@ function startTimer(duration, display) {
   
 
 //  timer includes default if no parameter is passed
-function timer (time = .5) {
+function timer (time = .2) {
     let minutes = 60 * time,
     display = document.querySelector('.timer');
     startTimer(minutes, display);
