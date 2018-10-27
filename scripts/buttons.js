@@ -9,8 +9,8 @@ const catElement = document.querySelector('[data-cats]');
 spaceElement.addEventListener('click', () => {
   queryStr = 'space';
   pageSize = 100;
-  numImages = 2;
-  numSounds = 2;
+  numImages = 8;
+  numSounds = 8;
   durationEnd = 4;
   modalElement.classList.toggle('modal-hidden')
   button(queryStr, pageSize,  numImages, numSounds, durationEnd);
@@ -19,8 +19,8 @@ spaceElement.addEventListener('click', () => {
 dogElement.addEventListener('click', () => {
   queryStr = 'dog';
   pageSize = 100;
-  numImages = 2;
-  numSounds = 2;
+  numImages = 16;
+  numSounds = 16;
   durationEnd = 4;
   modalElement.classList.toggle('modal-hidden')
   button(queryStr, pageSize,  numImages, numSounds, durationEnd);
