@@ -10,8 +10,8 @@ let level = 1;
 spaceElement.addEventListener('click', () => {
   queryStr = 'space';
   pageSize = 100;
-  numImages = 6 + (level*2);
-  numSounds = 6 + (level*2);
+  numImages = 2 + (level*2);
+  numSounds = 2 + (level*2);
   durationEnd = 3;
   modalElement.classList.toggle('modal-hidden')
   button(queryStr, pageSize,  numImages, numSounds, durationEnd);
