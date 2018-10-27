@@ -16,26 +16,33 @@
         <h1>Memory Game</h1>
     </header>
 
+    <div data-timer class="timer"> Time Remaining: 00:30</div>
+
+
 
     <div data-board class="game-box">
         <!-- game is drawn here -->
-        <div data-timer class="timer"> Time Remaining: 00:45</div>
-
     </div>
     <div class="modal" data-modal>
         <!-- game start screen with information on how to play  -->
         <!-- init game buttons  -->
+    </div>
+        <div class="modalText" data-modalText>
+            <h2>How to play</h2>
+            <p>Match each tile within the alloted time.<br><br>
+                Click on a button below to play!<br><br>
+                <!-- init game buttons  -->
         <button class="button-styles" data-space>Space</button>
         <button class="button-styles" data-dogs>Dogs</button>
-        <button class="button-styles" data-cats>Cats</button>
-    </div>
-    <script src="scripts/config.js"></script>
-    <script src="scripts/freesound.js"></script>
-    <script src="scripts/unsplash.js"></script>
-    <script src="scripts/index.js"></script>
-    <script src="scripts/buttons.js"></script>
-    <script src="scripts/timer.js"></script>
-
+        <button class="button-styles" data-cats>Cats</button></p>
+        </div>
+        <script src="scripts/config.js"></script>
+        <script src="scripts/freesound.js"></script>
+        <script src="scripts/unsplash.js"></script>
+        <script src="scripts/index.js"></script>
+        <script src="scripts/buttons.js"></script>
+        <script src="scripts/timer.js"></script>
+        <script src="scripts/gameEnd.js"></script>
 </body>
 
 </html>
