@@ -6,6 +6,7 @@ function gameEnd(end){
         modalTextElement.textContent = "You're a winner!"; 
         modalElement.classList.toggle('modal-hidden');
         document.querySelector('[data-board]').innerHTML = "";
+        level++;
 
 
     }else if(end === "loss"){

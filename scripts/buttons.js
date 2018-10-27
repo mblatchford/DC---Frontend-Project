@@ -5,10 +5,9 @@
 const spaceElement = document.querySelector('[data-space]');
 const dogElement = document.querySelector('[data-dogs]');
 const catElement = document.querySelector('[data-cats]');
-let level = 0;
+let level = 1;
 
 spaceElement.addEventListener('click', () => {
-  level++;
   queryStr = 'space';
   pageSize = 100;
   numImages = 6 + (level*2);

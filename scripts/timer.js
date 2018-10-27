@@ -28,7 +28,7 @@ function startTimer(duration, display) {
   
 
 //  timer includes default if no parameter is passed
-function timer (time = .2) {
+function timer (time = 1) {
     let minutes = 60 * time,
     display = document.querySelector('.timer');
     startTimer(minutes, display);
