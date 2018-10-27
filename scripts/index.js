@@ -5,7 +5,6 @@
 // guess count is reset after 2 guesses.
 
 function button() {
-
   // the promise.all will wait to pass its data to the anonymous function until both getImages and getSounds are resolved 
   Promise.all([getImages(queryStr, pageSize, numImages), getSounds(queryStr, durationEnd, pageSize, numSounds)]).then(function (data) {
     //dataObj will hold the array of imgs and the array of snds in one combined array
@@ -25,6 +24,7 @@ function button() {
     return dataObj;
   })
     .then(gameStart)
+    .then(timer)
 }
 
 function gameStart(dataObj) {
@@ -32,13 +32,14 @@ function gameStart(dataObj) {
   // container for images is appended and array of images is concatenated to double up the images.
   let gameBoard = arrayOfImgsSnds.concat(arrayOfImgsSnds);
 
-  // function to sort 8(16) tiles randomly.
+  // function to sort tiles randomly.
   gameBoard.sort(() => 0.5 - Math.random());
 
   let firstClick = "";
   let secondClick = "";
   let count = 0;
-  let wait = 800;
+  let wait = 800;//in millisecs
+  let numMatches = 0;
 
   const board = document.querySelector("[data-board]");
   const tileContainer = document.createElement("section");
@@ -58,8 +59,6 @@ function gameStart(dataObj) {
     // // sound anchor created
     const tileSound = document.createElement("audio");
     tileSound.src = item.soundFile;
-    // tileSound.type = "audio/mpeg";
-
 
     //   back of tile element created
     const tileBack = document.createElement("div");
@@ -76,9 +75,8 @@ function gameStart(dataObj) {
     tile.appendChild(tileSound);
 
 
-    // an event listener for the game board
+    // an event listener to each tile
     tile.addEventListener("click", function (e) {
-      // console.log('i clicked');
       let selected = e.target;
       //   only allow the div tiles to be selected and
       //   if there's a pair selected, the user cannot click
@@ -95,12 +93,10 @@ function gameStart(dataObj) {
         count++;
         if (count === 1) {
           firstClick = selected.parentNode.dataset.name;
-          //   console.log(firstClick);
           selected.parentNode.classList.add("clicked");
           selected.parentNode.querySelector("audio").play();
         } else {
           secondClick = selected.parentNode.dataset.name;
-          //   console.log(secondClick);
           selected.parentNode.classList.add("clicked");
           selected.parentNode.querySelector("audio").play();
         }
@@ -108,12 +104,31 @@ function gameStart(dataObj) {
         // and the first click matches the second click
         // the paired function is called.
         if (firstClick !== "" && secondClick !== "") {
+          // if a match
           if (firstClick === secondClick) {
-            //   added a delay between resetting clicks and
-            // matched pairs disappearing.
-            setTimeout(paired, wait);
-            setTimeout(resetClicks, wait);
-          } else {
+            // if at least two possible matches remain
+            if (numMatches < numImages-1){
+              // added a delay between resetting clicks and
+              // matched pairs disappearing.
+              setTimeout(paired, wait);
+              setTimeout(resetClicks, wait);
+              numMatches++;
+            // else if only last match left
+            }else{
+              setTimeout(paired, wait);
+              setTimeout(resetClicks, wait);
+              // stops timer on win
+              clearInterval(interval);
+              // call gameEnd()
+              let win = "win";
+              // have to pass the gameEnd param so must be in function wrapper
+              // or it will excecute immediately: gameEnd(win) vs gameEnd 
+              setTimeout(transition, 1525);
+              function transition (){
+                gameEnd(win);
+              }
+            }    
+          }else {
             setTimeout(resetClicks, wait);
           }
         }
@@ -142,12 +157,6 @@ function gameStart(dataObj) {
 
 }
 
-
-
-//Modal Logic for Game Start Screen
+//Modal element for Game Start Screen
 const modalElement = document.querySelector('[data-modal]');
-
-//click listener to toggle modal off
-modalElement.addEventListener('click', () => {
-  modalElement.classList.toggle('modal-hidden')
-});
+const modalTextElement = document.querySelector('[data-modalText]');

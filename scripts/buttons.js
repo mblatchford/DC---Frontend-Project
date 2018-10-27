@@ -12,7 +12,8 @@ spaceElement.addEventListener('click', () => {
   numImages = 8;
   numSounds = 8;
   durationEnd = 4;
-  button(queryStr, pageSize, numImages, numSounds, durationEnd);
+  modalElement.classList.toggle('modal-hidden')
+  button(queryStr, pageSize,  numImages, numSounds, durationEnd);
 });
 
 dogElement.addEventListener('click', () => {
@@ -21,7 +22,8 @@ dogElement.addEventListener('click', () => {
   numImages = 16;
   numSounds = 16;
   durationEnd = 4;
-  button(queryStr, pageSize, numImages, numSounds, durationEnd);
+  modalElement.classList.toggle('modal-hidden')
+  button(queryStr, pageSize,  numImages, numSounds, durationEnd);
 });
 
 catElement.addEventListener('click', () => {
@@ -30,5 +32,6 @@ catElement.addEventListener('click', () => {
   numImages = 2;
   numSounds = 2;
   durationEnd = 4;
-  button(queryStr, pageSize, numImages, numSounds, durationEnd);
+  modalElement.classList.toggle('modal-hidden')
+  button(queryStr, pageSize,  numImages, numSounds, durationEnd);
 });
