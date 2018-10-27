@@ -13,7 +13,7 @@ function startTimer(duration, display) {
                     minutes = minutes < 10 ? "0" + minutes : minutes;
                     seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                    display.textContent = "Time Remaining: " + minutes + ":" + seconds;
+                    display.textContent = " Level " + level + " Time Remaining: " + minutes + ":" + seconds;
                     // at timer end, game ends
                     if (--timer < 0 ){ 
                     // stop interval from repeating
@@ -50,19 +50,19 @@ function timer () {
     //         break;
     // }
     switch(level){
-        case '1':
+        case 1:
             time = 1;
             break;
-        case '2':
+        case 2:
             time = 1.25;
             break;
-        case '3':
+        case 3:
             time = 1.5;
             break;
-        case '4':
+        case 4:
             time = 1.75;
             break;
-        case '5':
+        case 5:
             time = 2;
             break;
         default:
