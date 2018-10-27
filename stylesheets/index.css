@@ -108,6 +108,7 @@ body{
 }
 
 .modal  {
+  color: white;
   position: absolute;
   left: 0;
   top: 0;

@@ -12,6 +12,7 @@ spaceElement.addEventListener('click', () => {
   numImages = 2;
   numSounds = 2;
   durationEnd = 4;
+  modalElement.classList.toggle('modal-hidden')
   button(queryStr, pageSize,  numImages, numSounds, durationEnd);
 });
 
@@ -21,6 +22,7 @@ dogElement.addEventListener('click', () => {
   numImages = 2;
   numSounds = 2;
   durationEnd = 4;
+  modalElement.classList.toggle('modal-hidden')
   button(queryStr, pageSize,  numImages, numSounds, durationEnd);
 });
 
@@ -30,5 +32,6 @@ catElement.addEventListener('click', () => {
   numImages = 2;
   numSounds = 2;
   durationEnd = 4;
+  modalElement.classList.toggle('modal-hidden')
   button(queryStr, pageSize,  numImages, numSounds, durationEnd);
 });
