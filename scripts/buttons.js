@@ -5,13 +5,15 @@
 const spaceElement = document.querySelector('[data-space]');
 const dogElement = document.querySelector('[data-dogs]');
 const catElement = document.querySelector('[data-cats]');
+let level = 0;
 
 spaceElement.addEventListener('click', () => {
+  level++;
   queryStr = 'space';
   pageSize = 100;
-  numImages = 2;
-  numSounds = 2;
-  durationEnd = 4;
+  numImages = 6 + (level*2);
+  numSounds = 6 + (level*2);
+  durationEnd = 3;
   modalElement.classList.toggle('modal-hidden')
   button(queryStr, pageSize,  numImages, numSounds, durationEnd);
 });
@@ -21,7 +23,7 @@ dogElement.addEventListener('click', () => {
   pageSize = 100;
   numImages = 2;
   numSounds = 2;
-  durationEnd = 4;
+  durationEnd = 3;
   modalElement.classList.toggle('modal-hidden')
   button(queryStr, pageSize,  numImages, numSounds, durationEnd);
 });
@@ -31,7 +33,7 @@ catElement.addEventListener('click', () => {
   pageSize = 100;
   numImages = 2;
   numSounds = 2;
-  durationEnd = 4;
+  durationEnd = 3;
   modalElement.classList.toggle('modal-hidden')
   button(queryStr, pageSize,  numImages, numSounds, durationEnd);
 });
