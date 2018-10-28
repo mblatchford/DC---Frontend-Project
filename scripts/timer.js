@@ -69,6 +69,7 @@ function timer () {
             console.error("level was not valid");
             break;
     }
+
     let minutes = 60 * time,
     display = document.querySelector('.timer');
     startTimer(minutes, display);
