@@ -5,26 +5,30 @@
 // guess count is reset after 2 guesses.
 
 function button() {
-  // the promise.all will wait to pass its data to the anonymous function until both getImages and getSounds are resolved 
-  Promise.all([getImages(queryStr, pageSize, numImages), getSounds(queryStr, durationEnd, pageSize, numSounds)]).then(function (data) {
-    //dataObj will hold the array of imgs and the array of snds in one combined array
-    let dataObj = [];
-    // the promise.all passed an array of two values [images,sounds]
-    // since the lengths are equal, just use the first array as our loop argument
-    // when using forEach instead of a std for loop, the array index is handled behind the scenes
-    // by including the 'i' as a parameter I can make that index available
-    data[0].forEach((element, i) => {
-      // with no conflicting keys across imgs and sounds, temp object will add all key/value pairs 
-      // in a single object, (the empty object provided in the first argument), from the images and from the sounds object
-      let temp = Object.assign({}, element, data[1][i]);
-      // push each unified img/snd object into dataObj array
-      dataObj.push(temp);
-    });
-    // return the completed dataObj array to promise.all which will pass it to the next link in the chain
-    return dataObj;
-  })
+  // the promise.all will wait to pass its data to the anonymous function until both getImages and getSounds are resolved
+  Promise.all([
+    getImages(queryStr, pageSize, numImages),
+    getSounds(queryStr, durationEnd, pageSize, numSounds)
+  ])
+    .then(function(data) {
+      //dataObj will hold the array of imgs and the array of snds in one combined array
+      let dataObj = [];
+      // the promise.all passed an array of two values [images,sounds]
+      // since the lengths are equal, just use the first array as our loop argument
+      // when using forEach instead of a std for loop, the array index is handled behind the scenes
+      // by including the 'i' as a parameter I can make that index available
+      data[0].forEach((element, i) => {
+        // with no conflicting keys across imgs and sounds, temp object will add all key/value pairs
+        // in a single object, (the empty object provided in the first argument), from the images and from the sounds object
+        let temp = Object.assign({}, element, data[1][i]);
+        // push each unified img/snd object into dataObj array
+        dataObj.push(temp);
+      });
+      // return the completed dataObj array to promise.all which will pass it to the next link in the chain
+      return dataObj;
+    })
     .then(gameStart)
-    .then(timer)
+    .then(timer);
 }
 
 function gameStart(dataObj) {
@@ -38,7 +42,7 @@ function gameStart(dataObj) {
   let firstClick = "";
   let secondClick = "";
   let count = 0;
-  let wait = 800;//in millisecs
+  let wait = 800; //in millisecs
   let numMatches = 0;
 
   const board = document.querySelector("[data-board]");
@@ -49,7 +53,7 @@ function gameStart(dataObj) {
   // loops through array of images to append to div
   gameBoard.forEach(item => {
     // tile elements are created with name
-    const tile = document.createElement("div");
+    const tile = document.createElement("section");
     tile.classList.add("memtile");
     tile.dataset.attrImg_name = item.attrImg_name;
     tile.dataset.attrImg_url = item.attrImg_url;
@@ -74,9 +78,8 @@ function gameStart(dataObj) {
     tile.appendChild(tileFace);
     tile.appendChild(tileSound);
 
-
     // an event listener to each tile
-    tile.addEventListener("click", function (e) {
+    tile.addEventListener("click", function(e) {
       let selected = e.target;
       //   only allow the div tiles to be selected and
       //   if there's a pair selected, the user cannot click
@@ -107,14 +110,14 @@ function gameStart(dataObj) {
           // if a match
           if (firstClick === secondClick) {
             // if at least two possible matches remain
-            if (numMatches < numImages-1){
+            if (numMatches < numImages - 1) {
               // added a delay between resetting clicks and
               // matched pairs disappearing.
               setTimeout(paired, wait);
               setTimeout(resetClicks, wait);
               numMatches++;
-            // else if only last match left
-            }else{
+              // else if only last match left
+            } else {
               setTimeout(paired, wait);
               setTimeout(resetClicks, wait);
               // stops timer on win
@@ -122,13 +125,13 @@ function gameStart(dataObj) {
               // call gameEnd()
               let win = "win";
               // have to pass the gameEnd param so must be in function wrapper
-              // or it will excecute immediately: gameEnd(win) vs gameEnd 
+              // or it will excecute immediately: gameEnd(win) vs gameEnd
               setTimeout(transition, 1525);
-              function transition (){
+              function transition() {
                 gameEnd(win);
               }
-            }    
-          }else {
+            }
+          } else {
             setTimeout(resetClicks, wait);
           }
         }
@@ -154,9 +157,8 @@ function gameStart(dataObj) {
       tile.classList.remove("clicked");
     });
   };
-
 }
 
 //Modal element for Game Start Screen
-const modalElement = document.querySelector('[data-modal]');
-const modalTextElement = document.querySelector('[data-modalText]');
+const modalElement = document.querySelector("[data-modal]");
+const modalTextElement = document.querySelector("[data-modalText]");
