@@ -117,9 +117,16 @@ function gameStart(dataObj) {
             }else{
               setTimeout(paired, wait);
               setTimeout(resetClicks, wait);
+              // stops timer on win
+              clearInterval(interval);
               // call gameEnd()
               let win = "win";
-              gameEnd(win);
+              // have to pass the gameEnd param so must be in function wrapper
+              // or it will excecute immediately: gameEnd(win) vs gameEnd 
+              setTimeout(transition, 1525);
+              function transition (){
+                gameEnd(win);
+              }
             }    
           }else {
             setTimeout(resetClicks, wait);
