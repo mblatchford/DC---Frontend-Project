@@ -17,7 +17,7 @@ body {
 
 /*base site made around  360px */
 
-body{
+body {
   /* change file here for different background image */
   background-image: url(/stylesheets/just-waves.png);
   background-repeat: repeat;
@@ -47,34 +47,33 @@ body{
 
 /* styling for the over game board */
 .boardy {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    margin-top: 1%;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 1%;
+  width: 100%;
+  height: 100%;
 }
 
 /* styling for individual images (imageCard) */
 .memtile {
   transform-style: preserve-3d;
   width: 20%;
-  height: 20vw; 
+  height: 20vw;
   transform: scale(20%);
   margin: 1% 1%;
   transition: all 500ms ease-out;
-
 }
 /* have the front/back fill the entire area of the card */
 .back,
 .front {
   height: 100%;
   width: 100%;
-  box-shadow: -13px 11px 25px 1px rgba(0,0,0,0.55);
+  box-shadow: -13px 11px 25px 1px rgba(0, 0, 0, 0.55);
   border-radius: 10px;
   position: absolute;
   backface-visibility: hidden;
@@ -82,16 +81,16 @@ body{
 
 .front {
   background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-image: linear-gradient(violet, yellow);
-    background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(violet, yellow);
+  background-size: cover;
 }
 
 .back {
   transform: rotateY(180deg);
   background-color: black;
-  background-size:cover;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -101,21 +100,18 @@ body{
   transform: rotateY(180deg);
 }
 
-
 .paired .front {
-  visibility: hidden;  
-
+  visibility: hidden;
 }
 
-.modal  {
-  color: white;
+.modal {
   position: absolute;
   left: 0;
   top: 0;
   margin: 5%;
   width: 90%;
   height: 90%;
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,116 +119,79 @@ body{
   border-radius: 10px;
 }
 
-.modal-hidden  {
+.modal-hidden {
   display: none;
   transform: scale(0.00001);
 }
 
-
-/* button styles for buttons */
-.button-styles {
-  border: none;
-  border-radius: 5px;  
-  font-size: 1em;
-  background: linear-gradient(violet, yellow);
-  box-shadow: 0 6px rgba(0,0,0,0.55);
-  cursor: pointer;
-  display: inline-block;
-	padding: 2% 8%;
-	margin: 1% 2%;
+.modalText {
+  text-align: center;
+  font-size: 2em;
+  color: rgb(4, 15, 23);
+  font-weight: 700;
   text-transform: uppercase;
-	letter-spacing: 1px;
-	font-weight: 700;
-	outline: none;
-	position: relative;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
+  animation: blur 0.75s ease-out infinite;
+  text-shadow: 0px 0px 5px #fff, 0px 0px 7px #fff;
 }
-
-.button-styles:after {
-	content: '';
-	position: absolute;
-	z-index: -1;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
-}
-
-.button-styles:hover {
-  box-shadow: 0 8px rgba(0,0,0,0.55);
-  top: -2px;
-}
-
-.button-styles:active {
-  box-shadow: 0 0 rgba(0,0,0,0.55);
-  top: 6px;
-}
-  
-  
 
 /* ================================== */
 /* next media width styling */
 @media screen and (min-width: 360px) {
-  .main-header{
+  .main-header {
     padding-bottom: 0;
     margin-bottom: 0;
   }
 
-  .boardy{
+  .boardy {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
     grid-auto-rows: minmax(6rem, auto);
     justify-items: center;
     align-items: center;
   }
-  
+
   .boardy::before {
-    content: '';
+    content: "";
     width: 0;
     padding-bottom: 90%;
     grid-row: 1 / 1;
     grid-column: 1 / 1;
   }
-  
+
   .boardy > *:first-child {
     grid-row: 1 / 1;
     grid-column: 1 / 1;
   }
-
   .memtile {
     width: 6rem;
     height: 6rem;
   }
 }
-
 /* ================================== */
 /* next media width styling */
 @media screen and (min-width: 768px) {
   .game-box {
     height: auto;
   }
-
-  .boardy{
+  .boardy {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
     grid-auto-rows: minmax(8rem, auto);
     width: 100%;
   }
-  
+
   .boardy::before {
-    content: '';
+    content: "";
     width: 0;
     padding-bottom: 100%;
     grid-row: 1 / 1;
     grid-column: 1 / 1;
   }
-  
+
   .boardy > *:first-child {
     grid-row: 1 / 1;
     grid-column: 1 / 1;
   }
-
   .memtile {
     width: 7rem;
     height: 7rem;
@@ -241,31 +200,30 @@ body{
 /* ================================== */
 /* next media width styling */
 @media screen and (min-width: 1200px) {
-  
-  .boardy{
+  .boardy {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(10rem, 6fr));
     grid-auto-rows: 2fr;
     width: 100%;
   }
-    
+
   .boardy::before {
-    content: '';
+    content: "";
     width: 0;
     padding-bottom: 100%;
     grid-row: 1 / 1;
     grid-column: 1 / 1;
   }
-  
+
   .boardy > *:first-child {
     grid-row: 1 / 1;
     grid-column: 1 / 1;
   }
-  
+
   .memtile {
     /* display: flex; */
     width: 90%;
     height: 90%;
-  /* margin: 0.3% 1%; */
+    /* margin: 0.3% 1%; */
   }
 }
