@@ -136,20 +136,19 @@ body{
 /* button styles for buttons */
 .button-styles {
   border: none;
-  border-radius: 5px;  
+
   font-size: 1em;
-  width: 75%;
   background: rgba(255, 255, 255, 0.2);
   background-image: url(/assets/buttonImg.png);
   background-position: center;
   background-repeat: no-repeat;
   width: 75%;
-  background-size: 75% 30px;
+  background-size: 75% 34px;
   /* box-shadow: 0 6px rgba(0,0,0,0.55); */
   cursor: pointer;
-  display: inline-block;
-	padding: 2% 5%;
-  margin: 1% 2%;
+  /* display: inline-block; */
+	padding: 3% 5%;
+  margin: 3% 2%;
   text-transform: uppercase;
 	letter-spacing: 1px;
 	/* font-weight: 700; */
