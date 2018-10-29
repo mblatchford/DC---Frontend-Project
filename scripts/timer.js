@@ -2,7 +2,7 @@
 // haven't figured out a way to kill it otherwise
 let interval = "";
 
-function startTimer(duration, display) {
+function startTimer(duration, displayLevel, displayTimer) {
     let timer = duration, minutes, seconds;
     // assigning setInterval to a variable means I can use the variable as the intervalID
     // clearInterval cancels intervals by ID
@@ -13,7 +13,8 @@ function startTimer(duration, display) {
                     minutes = minutes < 10 ? "0" + minutes : minutes;
                     seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                    display.textContent = " Level " + level + " Time Remaining: " + minutes + ":" + seconds;
+                    displayLevel.textContent = " Level " + level;
+                    displayTimer.textContent = "Time Remaining: " + minutes + ":" + seconds;
                     // at timer end, game ends
                     if (--timer < 0 ){ 
                     // stop interval from repeating
@@ -71,6 +72,7 @@ function timer () {
     }
 
     let minutes = 60 * time,
-    display = document.querySelector('.timer');
-    startTimer(minutes, display);
+    displayLevel = document.querySelector('.level');
+    displayTimer = document.querySelector('.timer');
+    startTimer(minutes, displayLevel, displayTimer);
 };

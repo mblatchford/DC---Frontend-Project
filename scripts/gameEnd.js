@@ -2,7 +2,9 @@ function gameEnd(end){
     if(end === "win" && level != 5){
         //write new message, call modal, delete game
         let timer = document.querySelector('.timer');
-        timer.textContent = "Level " + level + " Time Remaining: " + "00:00";
+        // timer.textContent = "Level " + level + " Time Remaining: " + "00:00";
+        level.textContent = " Level " + level;
+        timer.textContent = "Time Remaining: " + minutes + ":" + seconds;
         modalTextElement.textContent = "You're a winner!"; 
         modalElement.classList.toggle('modal-hidden');
         document.querySelector('[data-board]').innerHTML = "";
@@ -11,6 +13,7 @@ function gameEnd(end){
         level = 1;
         let timer = document.querySelector('.timer');
         timer.textContent = "";
+        level.textContent = "";
         modalTextElement.textContent = "You've beaten the game!!!"; 
         modalElement.classList.toggle('modal-hidden');
         document.querySelector('[data-board]').innerHTML = "";
