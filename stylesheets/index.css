@@ -84,9 +84,8 @@ body{
 
 .front {
   background-position: center;
-    background-attachment: fixed;
     background-repeat: no-repeat;
-    background-image: linear-gradient(violet, yellow);
+    background-image: url(/assets/tiles.png);
     background-size: cover;
 }
 
