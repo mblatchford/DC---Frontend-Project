@@ -4,9 +4,9 @@
 // unless the tiles are correct, in which case the tiles stay visible.
 // guess count is reset after 2 guesses.
 
-function button() {
+function button(queryStr, pageSize, numImages, numSounds, durationEnd) {
   // the promise.all will wait to pass its data to the anonymous function until both getImages and getSounds are resolved 
-  Promise.all([getImages(queryStr, pageSize, numImages), getSounds(queryStr, durationEnd, pageSize, numSounds)]).then(function (data) {
+  Promise.all([getImages(queryStr, pageSize, numImages), getSounds(queryStr, pageSize, numSounds, durationEnd)]).then(function (data) {
     //dataObj will hold the array of imgs and the array of snds in one combined array
     let dataObj = [];
     // the promise.all passed an array of two values [images,sounds]
@@ -29,6 +29,7 @@ function button() {
 
 function gameStart(dataObj) {
   const arrayOfImgsSnds = dataObj;
+  let numImages = arrayOfImgsSnds.length;
   // container for images is appended and array of images is concatenated to double up the images.
   let gameBoard = arrayOfImgsSnds.concat(arrayOfImgsSnds);
 
