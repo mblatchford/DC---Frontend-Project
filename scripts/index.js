@@ -49,7 +49,7 @@ function gameStart(dataObj) {
   // loops through array of images to append to div
   gameBoard.forEach(item => {
     // tile elements are created with name
-    const tile = document.createElement("div");
+    const tile = document.createElement("section");
     tile.classList.add("memtile");
     tile.dataset.attrImg_name = item.attrImg_name;
     tile.dataset.attrImg_url = item.attrImg_url;
