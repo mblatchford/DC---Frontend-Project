@@ -24,8 +24,12 @@ function getImages(queryStr, pageSize, numImages) {
         })
         //pass json to image extractor
         .then(packageImg)
-}
+        .catch(networkError)
+    }
 
+function networkError (){
+    window.alert("Network error please confirm connection and refresh.")
+}
 // loop json array, extract small images, append attribution data
 function packageImg([jsonData, numImages]) {
     //a given query will return the same images from the api

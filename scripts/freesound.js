@@ -26,9 +26,13 @@ function getSounds(queryStr, durationEnd, pageSize, numSounds) {
         })
         //pass json to sound extractor
         .then(packageSoundID)
-    // .then(gameStart)
-}
+        .catch(networkError)
+    }
 
+function networkError (){
+    window.alert("Network error please confirm connection and refresh.")
+}
+    
 // loop json array, extractd small sounds, append attribution data
 function packageSoundID([jsonData, numSounds]) {
     //a given query will return the same sounds from the api
