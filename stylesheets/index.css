@@ -120,17 +120,21 @@ body{
   color: black;
   position: absolute;
   left: 0;
-  top: 0;
+  top: 15%;
   margin: 5%;
   width: 90%;
-  height: 90%;
-  background-color: rgba(255, 255, 255, .8);
+  height: 65%;
+  background-color: rgba(255, 255, 255, 1);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   transition: all 200ms ease-in-out;
   border-radius: 10px;
+}
+.modalText{
+  top: 15%;
+  text-align: center;
 }
 
 .modal-hidden  {
@@ -143,15 +147,15 @@ body{
   border: none;
 
   /* font-size: 1em; */
-  /* background: rgba(255, 255, 255, 0.2); */
-  background-image: url(/assets/buttonImg.png);
+  background: rgba(255, 255, 255, 0.2);
+  /* background-image: url(/assets/buttonImg.png); */
   color: rgba(0, 0, 0, 0);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   cursor: pointer;
-	padding: 3% 5%;
-  margin: 3% 2%;
+	/* padding: 3% 5%;
+  margin: 3% 2%; */ 
 	outline: none;
 	position: relative;
 
