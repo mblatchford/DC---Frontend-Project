@@ -19,8 +19,8 @@ body {
 
 body{
   /* change file here for different background image */
-  background-image: url(/stylesheets/just-waves.png);
-  background-repeat: repeat;
+  background-image: url(/assets/background.png);
+  background-size: cover;
 }
 
 /* HEADER STYLES  */
