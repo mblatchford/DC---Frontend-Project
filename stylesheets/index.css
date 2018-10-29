@@ -27,8 +27,9 @@ body{
 
 /* HEADER STYLES  */
 .main-header {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  justify-items: center;
+  text-align: center;
   height: 5%;
   width: 100%;
   margin-bottom: 5%;
