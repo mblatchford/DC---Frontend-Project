@@ -4,9 +4,10 @@ function gameEnd(end){
         let timer = document.querySelector('.timer');
         let levelStatus = document.querySelector('.level');
         // timer.textContent = "Level " + level + " Time Remaining: " + "00:00";
-        levelStatus.textContent = "Level " + levelStatus;
+        levelStatus.textContent = "Level " + level;
         timer.textContent = "Time Remaining: " + "00:00";
-        modalTextElement.textContent = "You're a winner!"; 
+        modalH2Element.textContent = "You're a winner!"; 
+        modalPElement.textContent = "Play the next level?";
         modalElement.classList.toggle('modal-hidden');
         document.querySelector('[data-board]').innerHTML = "";
         level++;
@@ -16,13 +17,15 @@ function gameEnd(end){
         let levelStatus = document.querySelector('.level');
         timer.textContent = "";
         levelStatus.textContent = "";
-        modalTextElement.textContent = "You've beaten the game!!!"; 
+        modalH2Element.textContent = "You've beaten the game!!!"; 
+        modalPElement.textContent = "(but you can try again)"
         modalElement.classList.toggle('modal-hidden');
         document.querySelector('[data-board]').innerHTML = "";
         // game ending modal splash or transition different from the others?
 
     }else if(end === "loss"){
-        modalTextElement.textContent = "You're a loser!"; 
+        modalH2Element.textContent = "You're a loser!"; 
+        modalPElement.textContent = "(but you can try again)"
         modalElement.classList.toggle('modal-hidden');
         document.querySelector('[data-board]').innerHTML = "";
 
