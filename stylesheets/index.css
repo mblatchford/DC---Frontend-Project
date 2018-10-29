@@ -19,14 +19,10 @@ body {
 
 body{
   /* change file here for different background image */
-<<<<<<< HEAD
   background-image: url(/assets/background.png);
   background-size: cover;
-=======
-  background-image: url(/stylesheets/just-waves.png);
-  background-repeat: repeat;
   font-family: 'Press Start 2P', cursive;
->>>>>>> edWhelan/font
+
 }
 
 /* HEADER STYLES  */
