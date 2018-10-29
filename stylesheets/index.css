@@ -146,22 +146,26 @@ body{
 .button-styles {
   border: none;
 
-  /* font-size: 1em; */
+  font-size: 1em;
   background: rgba(255, 255, 255, 0.2);
   /* background-image: url(/assets/buttonImg.png); */
-  color: rgba(0, 0, 0, 0);
-  background-position: center;
+  color: rgba(0, 0, 0, 1);
+  /* background-position: bottom; */
   background-repeat: no-repeat;
   background-size: 100% 100%;
   cursor: pointer;
-	/* padding: 3% 5%;
-  margin: 3% 2%; */ 
+	/* padding: 3% 5%;*/
+  margin: 10px;
 	outline: none;
 	position: relative;
 
 }
 
-  
+  button:hover{
+    color: white;
+    background: black;
+
+  }
   
 
 /* ================================== */
@@ -268,6 +272,9 @@ body{
     width: 90%;
     height: 90%;
   /* margin: 0.3% 1%; */
+  }
+  .button-styles{
+    font-size: large;
   }
 
 }
