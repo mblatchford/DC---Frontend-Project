@@ -12,7 +12,8 @@
 
 
 
-function getSounds(queryStr, durationEnd, pageSize, numSounds) {
+function getSounds(queryStr, pageSize, numSounds, durationEnd) {
+    
     // fetch sounds from api dynamically based on query 
     // include parameter for duration match in secondsgit
     // include parameter of pageSize for num results per fetch
