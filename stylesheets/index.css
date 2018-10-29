@@ -21,6 +21,7 @@ body{
   /* change file here for different background image */
   background-image: url(/stylesheets/just-waves.png);
   background-repeat: repeat;
+  font-family: 'Press Start 2P', cursive;
 }
 
 /* HEADER STYLES  */
