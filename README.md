@@ -26,3 +26,6 @@ Memory matching tile game to allow users to match tiles based on their matching 
 ## Dependancies
 - [Free Sound API](https://freesound.org/docs/api/ "Free Sound API") for dynamic sounds.
 - [Unsplash Image API]( https://unsplash.com/developers "Unsplash Image API") for dynamic images. 
+
+
+![Parity Screenshots](/assets/ParityScreenshots.png)
