@@ -1,4 +1,6 @@
-# DC-Frontend-Project - __Parity__
+DC-Frontend-Project
+
+# Parity
 
 ## Synopsis
 Memory matching tile game to allow users to match tiles based on their matching picture and sound randomized each game. Allow users to pick from 3 options of image/sound themes. 
