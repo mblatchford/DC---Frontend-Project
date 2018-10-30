@@ -1,11 +1,13 @@
 /* apply a natural box layout model to all elements, but allowing components to change */
 html {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 html,
 body {
@@ -28,7 +30,9 @@ body{
 /* HEADER STYLES  */
 .main-header {
   display: grid;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   justify-items: center;
   text-align: center;
   /* height: 5%; */
@@ -49,18 +53,28 @@ body{
 
 /* styling for game board area */
 .game-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 95%;
   width: 100%;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 /* styling for the over game board */
 .boardy {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -71,11 +85,14 @@ body{
 
 /* styling for individual images (imageCard) */
 .memtile {
-  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
   width: 20%;
   height: 20vw; 
-  transform: scale(20%);
+  -webkit-transform: scale(20%); 
+          transform: scale(20%);
   margin: 1% 1%;
+  -webkit-transition: all 500ms ease-out;
   transition: all 500ms ease-out;
 
 }
@@ -84,10 +101,12 @@ body{
 .front {
   height: 100%;
   width: 100%;
-  box-shadow: -13px 11px 25px 1px rgba(0,0,0,0.55);
+  -webkit-box-shadow: -13px 11px 25px 1px rgba(0,0,0,0.55);
+          box-shadow: -13px 11px 25px 1px rgba(0,0,0,0.55);
   border-radius: 10px;
   position: absolute;
-  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 
 .front {
@@ -98,7 +117,8 @@ body{
 }
 
 .back {
-  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
   background-color: black;
   background-size:cover;
   background-repeat: no-repeat;
@@ -107,7 +127,8 @@ body{
 
 /* adds styling when an image is clicked */
 .clicked {
-  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 
 
@@ -125,10 +146,20 @@ body{
   width: 90%;
   height: 65%;
   background-color: rgba(255, 255, 255, 1);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
   border-radius: 10px;
 }
@@ -139,7 +170,8 @@ body{
 
 .modal-hidden  {
   display: none;
-  transform: scale(0.00001);
+  -webkit-transform: scale(0.00001);
+          transform: scale(0.00001);
 }
 
 /* button styles for buttons */
