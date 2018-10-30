@@ -1,5 +1,5 @@
 function gameEnd(end) {
-  if (end === "win" && level != 5) {
+  if (end === "win" && level != 2) {
     //write new message, call modal, delete game
     let timer = document.querySelector(".timer");
     let levelStatus = document.querySelector(".level");
@@ -11,7 +11,7 @@ function gameEnd(end) {
     modalElement.classList.toggle("modal-hidden");
     document.querySelector("[data-board]").innerHTML = "";
     level++;
-  } else if (end === "win" && level === 5) {
+  } else if (end === "win" && level === 2) {
     level = 1;
     let timer = document.querySelector(".timer");
     let levelStatus = document.querySelector(".level");
