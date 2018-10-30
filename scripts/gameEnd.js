@@ -18,7 +18,7 @@ function gameEnd(end){
         timer.textContent = "";
         levelStatus.textContent = "";
         modalH2Element.textContent = "You've beaten the game!!!"; 
-        modalPElement.textContent = "(but you can try again)"
+        modalPElement.textContent = "";
         modalElement.classList.toggle('modal-hidden');
         document.querySelector('[data-board]').innerHTML = "";
         // game ending modal splash or transition different from the others?
