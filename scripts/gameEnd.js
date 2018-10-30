@@ -1,5 +1,5 @@
 function gameEnd(end) {
-  if (end === "win" && level != 5) {
+  if (end === "win" && level != 2) {
     //write new message, call modal, delete game
     let timer = document.querySelector(".timer");
     let levelStatus = document.querySelector(".level");
@@ -11,7 +11,7 @@ function gameEnd(end) {
     modalElement.classList.toggle("modal-hidden");
     document.querySelector("[data-board]").innerHTML = "";
     level++;
-  } else if (end === "win" && level === 5) {
+  } else if (end === "win" && level === 2) {
     level = 1;
     let timer = document.querySelector(".timer");
     let levelStatus = document.querySelector(".level");
@@ -20,10 +20,12 @@ function gameEnd(end) {
     modalH2Element.textContent = "You've beaten the game!!!";
     modalPElement.textContent = "(but you can try again)";
     modalElement.classList.toggle("modal-hidden");
-    document.querySelector("[data-board]").innerHTML = "";
+    let celebrate = document.querySelector("#particles-js");
+    celebrate.removeAttribute;
     particlesJS("particles-js", "app.js", function() {
       console.log("particles.js loaded - callback");
     });
+    document.querySelector("[data-board]").innerHTML = "";
     // game ending modal splash or transition different from the others?
   } else if (end === "loss") {
     modalH2Element.textContent = "You're a loser!";
