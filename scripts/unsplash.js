@@ -43,6 +43,8 @@ function packageImg([jsonData, numImages]) {
 
     //non-repeating number logic
     let rand = [];
+    
+    // Nice way to generate a certain number of random items.
     while (rand.length < numImages) {
         let num = getRandomIntInclusive();
         // ! reverses logic
@@ -53,8 +55,11 @@ function packageImg([jsonData, numImages]) {
         }
     }
     // console.log(`rand[] ${rand}`);
-    let imgArray = [];
-    rand.forEach(index => {
+
+    // Consider doing a .map, like so:
+    // let imgArray = [];
+    // rand.forEach(index => {
+    let imgArray = rand.map(index => {           
         // keep reintializing a new imgObj in the loop
         // else if outside, just accesing memory pointers to one object
         let imgObj = {
@@ -65,7 +70,8 @@ function packageImg([jsonData, numImages]) {
         imgObj.imgSrc = `${jsonData.results[index].urls.small}`;
         imgObj.attrImg_name = `${jsonData.results[index].user.name}`;
         imgObj.attrImg_url = `${jsonData.results[index].links.html}`;
-        imgArray.push(imgObj);
+        // imgArray.push(imgObj);
+        return imgObj;
     });
 
     //uncomment the below to get a handle on what is being passed back to the promise chain

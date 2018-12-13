@@ -7,8 +7,8 @@ const dogElement = document.querySelector('[data-dogs]');
 const catElement = document.querySelector('[data-cats]');
 let level = 1;
 
-spaceElement.addEventListener('click', () => {
-  let queryStr = 'space';
+// Consider grouping together this functionality:
+function initialize(queryStr) {
   let pageSize = 100;
   let numImages = 6 + (level*2);
   let numSounds = 6 + (level*2); 
@@ -17,28 +17,46 @@ spaceElement.addEventListener('click', () => {
   button(queryStr, pageSize, numImages, numSounds, durationEnd);
   window.pJSDom[0].pJS.fn.vendors.destroypJS();
   window["pJSDom"] = [];
+}
+
+// which then allows you to:
+
+spaceElement.addEventListener('click', () => {
+  initialize('space');
+  
+  // let queryStr = 'space';
+  // let pageSize = 100;
+  // let numImages = 6 + (level*2);
+  // let numSounds = 6 + (level*2); 
+  // let durationEnd = 3;
+  // modalElement.classList.toggle('modal-hidden')
+  // button(queryStr, pageSize, numImages, numSounds, durationEnd);
+  // window.pJSDom[0].pJS.fn.vendors.destroypJS();
+  // window["pJSDom"] = [];
 });
 
 dogElement.addEventListener('click', () => {
-  let queryStr = 'dog';
-  let pageSize = 100;
-  let numImages = 6 + (level*2);
-  let numSounds = 6 + (level*2);
-  let durationEnd = 3;
-  modalElement.classList.toggle('modal-hidden')
-  button(queryStr, pageSize, numImages, numSounds, durationEnd);
-  window.pJSDom[0].pJS.fn.vendors.destroypJS();
-  window["pJSDom"] = [];
+  initialize('dog');
+  // let queryStr = 'dog';
+  // let pageSize = 100;
+  // let numImages = 6 + (level*2);
+  // let numSounds = 6 + (level*2);
+  // let durationEnd = 3;
+  // modalElement.classList.toggle('modal-hidden')
+  // button(queryStr, pageSize, numImages, numSounds, durationEnd);
+  // window.pJSDom[0].pJS.fn.vendors.destroypJS();
+  // window["pJSDom"] = [];
 });
 
 catElement.addEventListener('click', () => {
-  let queryStr = 'cat';
-  let pageSize = 100;
-  let numImages = 6 + (level*2);
-  let numSounds = 6 + (level*2);
-  let durationEnd = 3;
-  modalElement.classList.toggle('modal-hidden')
-  button(queryStr, pageSize, numImages, numSounds, durationEnd);
-  window.pJSDom[0].pJS.fn.vendors.destroypJS();
-  window["pJSDom"] = [];
+  initialize('cat');
+  // let queryStr = 'cat';
+  // let pageSize = 100;
+  // let numImages = 6 + (level*2);
+  // let numSounds = 6 + (level*2);
+  // let durationEnd = 3;
+  // modalElement.classList.toggle('modal-hidden')
+  // button(queryStr, pageSize, numImages, numSounds, durationEnd);
+  // window.pJSDom[0].pJS.fn.vendors.destroypJS();
+  // window["pJSDom"] = [];
 });
