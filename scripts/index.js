@@ -28,6 +28,8 @@ function button(queryStr, pageSize, numImages, numSounds, durationEnd) {
 }
 
 function gameStart(dataObj) {
+  // Since you're never referring to `dataObj` again, consider
+  // changing the argument to `arrayOfImgSnds`
   const arrayOfImgsSnds = dataObj;
   let numImages = arrayOfImgsSnds.length;
   // container for images is appended and array of images is concatenated to double up the images.
@@ -107,28 +109,43 @@ function gameStart(dataObj) {
           // if a match
           if (firstClick === secondClick) {
             // if at least two possible matches remain
+
+            // Maybe move these out of the if/else, since they appear
+            // in both?
+            setTimeout(paired, wait);
+            setTimeout(resetClicks, wait);
+
             if (numMatches < numImages-1){
               // added a delay between resetting clicks and
               // matched pairs disappearing.
-              setTimeout(paired, wait);
-              setTimeout(resetClicks, wait);
+              // setTimeout(paired, wait);
+              // setTimeout(resetClicks, wait);
               numMatches++;
             // else if only last match left
             }else{
-              setTimeout(paired, wait);
-              setTimeout(resetClicks, wait);
+              // setTimeout(paired, wait);
+              // setTimeout(resetClicks, wait);
               // stops timer on win
               clearInterval(interval);
               // call gameEnd()
               let win = "win";
               // have to pass the gameEnd param so must be in function wrapper
               // or it will excecute immediately: gameEnd(win) vs gameEnd 
-              setTimeout(transition, 1525);
-              function transition (){
-                gameEnd(win);
-              }
+
+              // Maybe this instead? No need for the additional function declaration.
+              setTimeout(function (){
+                  gameEnd(win);
+              }, 1525);
+              // setTimeout(transition, 1525);
+              // function transition (){
+              //   gameEnd(win);
+              // }
             }    
           }else {
+
+            // Didn't see this earlier.
+            // Possibly move this up, out of the if/else since it appears
+            // in all branches?
             setTimeout(resetClicks, wait);
           }
         }

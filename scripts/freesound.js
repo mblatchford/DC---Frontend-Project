@@ -57,6 +57,9 @@ function packageSoundID([jsonData, numSounds]) {
             rand.push(num);
         }
     }
+
+    // Consider replacing this with a .map
+    // (nit-picky, but conceptually more direct)
     let soundsArray = [];
     rand.forEach(index => {
         // keep reintializing a new soundObj in the loop

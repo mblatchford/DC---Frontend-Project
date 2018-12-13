@@ -50,28 +50,38 @@ function timer () {
     //         console.error("level was not valid");
     //         break;
     // }
-    switch(level){
-        case 1:
-            time = 1;
-            break;
-        case 2:
-            time = 1.25;
-            break;
-        case 3:
-            time = 1.5;
-            break;
-        case 4:
-            time = 1.75;
-            break;
-        case 5:
-            time = 2;
-            break;
-        default:
-            console.error("level was not valid");
-            break;
-    }
+    // switch(level){
+    //     case 1:
+    //         time = 1;
+    //         break;
+    //     case 2:
+    //         time = 1.25;
+    //         break;
+    //     case 3:
+    //         time = 1.5;
+    //         break;
+    //     case 4:
+    //         time = 1.75;
+    //         break;
+    //     case 5:
+    //         time = 2;
+    //         break;
+    //     default:
+    //         console.error("level was not valid");
+    //         break;
+    // }
 
-    let minutes = 60 * time,
+    // Possibly more clear:
+    const time = {
+        1: 1,
+        2: 1.25,
+        3: 1.5,
+        4: 1.75,
+        5: 2
+    };
+
+    // let minutes = 60 * time,
+    let minutes = 60 * time[level],
     displayLevel = document.querySelector('.level');
     displayTimer = document.querySelector('.timer');
     startTimer(minutes, displayLevel, displayTimer);
